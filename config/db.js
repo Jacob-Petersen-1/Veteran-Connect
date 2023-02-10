@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const config = require('config');
 const dotenv = require('dotenv').config()
 
 
@@ -13,14 +12,16 @@ const dbUrl = `mongodb+srv://${user}:${encodeURIComponent(password)}@veteranconn
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(dbUrl)
+        mongoose.set("strictQuery", false);
+        await mongoose.connect(dbUrl,{useNewUrlParser: true})
         console.log("MongoDB Connection Established")
     } catch (error) {
         console.error(error.message)
+        //Allows User to check DB authentication in case of failure.
         console.log(dbUrl)
         //Exit process with failure
         process.exit(1)
     }
 }
 
-module.exports = connectDB
+module.exports = connectDB;
