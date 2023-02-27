@@ -24,7 +24,7 @@ const ProfileSchema = new mongoose.Schema({
   },
 
   servicebranch: {
-    type: String
+    type: String,
   },
 
   bio: {
