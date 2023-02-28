@@ -1,13 +1,5 @@
-import React, { useState, useEffect } from 'react';
-
-
-
-
 const LandingPage = () => {
-    return ( 
-    <div>
-        <h1>Landing Page</h1>
-    </div> );
+    return ( <h1>Landing</h1>  );
 }
  
 export default LandingPage;
