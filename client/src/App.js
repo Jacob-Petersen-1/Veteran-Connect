@@ -8,14 +8,14 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 
 
 //Utils Imports
-import PrivateRoute from "./utils/PrivateRoute";
+
 
 function App() {
   return (
     <>
     <Routes>
       <Route path="/" element={<LandingPage/>} />
-      <Route path="/home" element={<PrivateRoute> <HomePage/></PrivateRoute>} />
+      <Route path="/home" element={ <HomePage/>} />
     </Routes>
     </>
     
