@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 //Pages Imports
-import LandingPage from "./pages/LandingPage/LandingPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 import HomePage from "./pages/HomePage/HomePage";
 
 //Utils Imports
@@ -17,7 +17,7 @@ function App() {
       <ThemeProvider theme={theme}>
       <CssBaseline/>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<LoginPage />} />
           <Route path="/home" element={<HomePage />} />
         </Routes>
       </ThemeProvider>
