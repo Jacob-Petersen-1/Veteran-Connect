@@ -1,4 +1,11 @@
-import React from 'react';
+//General Imports
+import React, { useState, useEffect,useContext } from 'react';
+
+import { Link } from 'react-router-dom';
+
+//Utils Imports
+import AuthContext from '../../Auth/AuthContext';
+import useCustomForm from "../../hooks/useCustomForm";
 
 
 //MUI imports
@@ -8,7 +15,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -19,12 +25,23 @@ import Container from '@mui/material/Container';
 
 
 const LoginForm  = () => {
+    const { loginUser, isServerError } = useContext(AuthContext);
+    const defaultValues = { username: "", password: "" };
+    const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
+      defaultValues,
+      loginUser
+    );
 
-    const handleSubmit=() =>{
-        console.log("Do something here")
-      }
-      
+    useEffect(() => {
+        if (isServerError) {
+          reset();
+        }
+      }, [isServerError]);
+
     return ( 
+        
+        
+        
         <Container component="main" maxWidth="xs">
         <Box
           sx={{
@@ -35,7 +52,7 @@ const LoginForm  = () => {
           }}
         >
 
-            <Typography variant='h4'>Veteran Connect</Typography>
+            <Typography variant='h4'>{"Veteran Connect"}</Typography>
         
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -46,8 +63,7 @@ const LoginForm  = () => {
               id="email"
               label="Email Address"
               name="email"
-              autoComplete="email"
-              autoFocus
+
             />
             <TextField
               margin="normal"
@@ -57,7 +73,6 @@ const LoginForm  = () => {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -73,12 +88,12 @@ const LoginForm  = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" style={{textDecoration:"none"}}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/register" style={{textDecoration:"none"}}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
