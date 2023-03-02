@@ -1,5 +1,5 @@
 import React from "react";
-import { createContext, useState } from "react";
+import { createContext, useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
@@ -8,15 +8,33 @@ const AuthContext = createContext();
 
 export default AuthContext;
 
-function setUserObject(user) {
-  if (!user) {
+
+// Function to Grab the information from the user after successfull login. 
+async function getUserObject(token) {
+  if (!token) {
     return null;
   }
-  return {
-    id: user.id,
-  };
+  try {
+    console.log("Token in set user", token);
+    let response = await axios.get("/api/auth/", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+    return {
+      id: response.data._id,
+      name: response.data.name,
+      email: response.data.email,
+      avatar: response.data.avatar,
+      date: response.data.date,
+    };
+  } catch (error) {
+    console.error("Error Setting User Object", error.message);
+    return null;
+  }
 }
 
+// AuthProvider
 export const AuthProvider = ({ children }) => {
   const userToken = localStorage.getItem("token");
   let decodedUser = null;
@@ -27,10 +45,22 @@ export const AuthProvider = ({ children }) => {
   }
 
   const [token, setToken] = useState(userToken);
-  const [user, setUser] = useState(setUserObject(decodedUser));
+  const [user, setUser] = useState();
   const [isServerError, setIsServerError] = useState(false);
   const navigate = useNavigate();
 
+// After token is grabbed from first request, run a useEffect to grab user information. 
+  useEffect(() => {
+    async function fetchUser () {
+      const user = await getUserObject(token);
+      setUser(user)
+    }
+    if(token){
+      fetchUser()
+    }
+  },[token])
+
+//TODO Finish Testing
   const registerUser = async (registerData) => {
     try {
       let finalData = {
@@ -38,7 +68,7 @@ export const AuthProvider = ({ children }) => {
         password: registerData.password,
         email: registerData.email,
       };
-      let response = await axios.post(`api/users/`, finalData);
+      let response = await axios.post(`/api/users/`, finalData);
       if (response.status === 201) {
         console.log("Successful registration! Log in to access token");
         setIsServerError(false);
@@ -51,14 +81,13 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  //Login User
   const loginUser = async (loginData) => {
     try {
       let response = await axios.post(`/api/auth/`, loginData);
       if (response.status === 200) {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         setToken(JSON.parse(localStorage.getItem("token")));
-        let loggedInUser = jwtDecode(response.data.token);
-        setUser(setUserObject(loggedInUser));
         setIsServerError(false);
         navigate("/home");
       } else {
@@ -72,6 +101,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Logout User
   const logoutUser = () => {
     if (user) {
       localStorage.removeItem("token");
