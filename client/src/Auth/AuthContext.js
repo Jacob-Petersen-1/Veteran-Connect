@@ -1,3 +1,4 @@
+import React from "react";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,13 +13,19 @@ function setUserObject(user) {
     return null;
   }
   return {
-    id: user.user_id,
+    id: user.id,
   };
 }
 
 export const AuthProvider = ({ children }) => {
-  const userToken = JSON.parse(localStorage.getItem("token"));
-  const decodedUser = userToken ? jwtDecode(userToken) : null;
+  const userToken = localStorage.getItem("token");
+  let decodedUser = null;
+  try {
+    decodedUser = userToken ? jwtDecode(userToken) : null;
+  } catch (error) {
+    console.error("Error decoding user token:", error);
+  }
+
   const [token, setToken] = useState(userToken);
   const [user, setUser] = useState(setUserObject(decodedUser));
   const [isServerError, setIsServerError] = useState(false);
@@ -35,7 +42,7 @@ export const AuthProvider = ({ children }) => {
       if (response.status === 201) {
         console.log("Successful registration! Log in to access token");
         setIsServerError(false);
-        navigate("/login");
+        navigate("/home");
       } else {
         navigate("/register");
       }
@@ -46,11 +53,11 @@ export const AuthProvider = ({ children }) => {
 
   const loginUser = async (loginData) => {
     try {
-      let response = await axios.post(`api/auth/`, loginData);
+      let response = await axios.post(`/api/auth/`, loginData);
       if (response.status === 200) {
-        localStorage.setItem("token", JSON.stringify(response.data));
+        localStorage.setItem("token", JSON.stringify(response.data.token));
         setToken(JSON.parse(localStorage.getItem("token")));
-        let loggedInUser = jwtDecode(response.data);
+        let loggedInUser = jwtDecode(response.data.token);
         setUser(setUserObject(loggedInUser));
         setIsServerError(false);
         navigate("/home");
@@ -60,6 +67,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.log(error.response.data);
       setIsServerError(true);
+      console.log("Error in login user", loginData);
       navigate("/register");
     }
   };

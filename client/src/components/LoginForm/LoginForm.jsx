@@ -26,10 +26,10 @@ import Container from '@mui/material/Container';
 
 const LoginForm  = () => {
     const { loginUser, isServerError } = useContext(AuthContext);
-    const defaultValues = { username: "", password: "" };
+    const defaultValues = { email: "", password: "" };
     const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
       defaultValues,
-      loginUser
+     loginUser
     );
 
     useEffect(() => {
@@ -37,6 +37,8 @@ const LoginForm  = () => {
           reset();
         }
       }, [isServerError]);
+
+      
 
     return ( 
         
@@ -63,6 +65,8 @@ const LoginForm  = () => {
               id="email"
               label="Email Address"
               name="email"
+              value={formData.email}
+              onChange={handleInputChange}
 
             />
             <TextField
@@ -73,6 +77,8 @@ const LoginForm  = () => {
               label="Password"
               type="password"
               id="password"
+              value={formData.password}
+              onChange={handleInputChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
