@@ -18,7 +18,6 @@ function setUserObject(user) {
     return {
       id: user.user.id,
       name: user.user.name,
-      email: user.user.email,
       avatar: user.user.avatar,
     };
 
