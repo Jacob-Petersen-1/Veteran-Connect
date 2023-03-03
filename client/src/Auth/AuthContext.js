@@ -9,56 +9,32 @@ const AuthContext = createContext();
 export default AuthContext;
 
 
-// Function to Grab the information from the user after successfull login. 
-async function getUserObject(token) {
-  if (!token) {
+// Function to Destructure user object in JWT Payload
+function setUserObject(user) {
+  if (!user) {
     return null;
   }
-  try {
-    console.log("Token in set user", token);
-    let response = await axios.get("/api/auth/", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
+
     return {
-      id: response.data._id,
-      name: response.data.name,
-      email: response.data.email,
-      avatar: response.data.avatar,
-      date: response.data.date,
+      id: user.user.id,
+      name: user.user.name,
+      email: user.user.email,
+      avatar: user.user.avatar,
     };
-  } catch (error) {
-    console.error("Error Setting User Object", error.message);
-    return null;
+
   }
-}
+
 
 // AuthProvider
 export const AuthProvider = ({ children }) => {
   const userToken = localStorage.getItem("token");
-  let decodedUser = null;
-  try {
-    decodedUser = userToken ? jwtDecode(userToken) : null;
-  } catch (error) {
-    console.error("Error decoding user token:", error);
-  }
-
+  const decodedUser = userToken ? jwtDecode(userToken) : null
   const [token, setToken] = useState(userToken);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(setUserObject(decodedUser));
   const [isServerError, setIsServerError] = useState(false);
   const navigate = useNavigate();
 
-// After token is grabbed from first request, run a useEffect to grab user information. 
-  useEffect(() => {
-    async function fetchUser () {
-      const user = await getUserObject(token);
-      setUser(user)
-    }
-    if(token){
-      fetchUser()
-    }
-  },[token])
+
 
 //TODO Finish Testing
   const registerUser = async (registerData) => {
@@ -88,6 +64,8 @@ export const AuthProvider = ({ children }) => {
       if (response.status === 200) {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         setToken(JSON.parse(localStorage.getItem("token")));
+        let loggedInUser = jwtDecode(response.data.token)
+        setUser(setUserObject(loggedInUser))
         setIsServerError(false);
         navigate("/home");
       } else {
