@@ -4,6 +4,7 @@ import "./App.css";
 
 //Pages Imports
 import LoginPage from "./pages/LoginPage/LoginPage";
+import LandingPage from "./pages/LandingPage/LandingPage";
 import HomePage from "./pages/HomePage/HomePage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
@@ -12,25 +13,25 @@ import PrivateRoute from "./utils/PrivateRoute";
 import { theme } from "./theme/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
-
-
 function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-      <CssBaseline/>
-      
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/home" element={
-            <PrivateRoute>
-              <HomePage/>
-            </PrivateRoute>
-          }/>
+        <CssBaseline />
 
-          <Route path="/register" element={<RegisterPage/>}/>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute>
+                <HomePage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
-     
       </ThemeProvider>
     </>
   );
