@@ -34,17 +34,18 @@ const LoginForm = () => {
     }
   }, [isServerError]);
 
+  
+
   return (
-    <Container component="main" maxWidth="xs">
+    <Container sx={{backgroundColor: "white",borderRadius:'16px'}}  maxWidth="xs">
       <Box
         sx={{
-          marginTop: 10,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Typography variant="h4">{"Veteran Connect"}</Typography>
+        <Typography variant="h4" sx={{color:"black"}}>Veteran Connect</Typography>
 
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -68,7 +69,8 @@ const LoginForm = () => {
             value={formData.password}
             onChange={handleInputChange}
           />
-          <FormControlLabel
+          <FormControlLabel 
+          sx={{color:"black"}}
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
@@ -81,13 +83,8 @@ const LoginForm = () => {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2" style={{ textDecoration: "none" }}>
-                Forgot password?
-              </Link>
-            </Grid>
             <Grid item>
-              <Link to="/register" style={{ textDecoration: "none" }}>
+              <Link to="/register" style={{ textDecoration: "none", color:"black" }}>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
