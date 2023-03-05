@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Component Imports
-import AppBar from '../../components/AppBarLanding/AppBar';
+import AppBar from '../../components/AppBar/AppBar';
 import Landing from '../../components/Landing/Landing';
 
 

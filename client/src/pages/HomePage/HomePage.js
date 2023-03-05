@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
 
 //MUI Components Imports
-import AppBarUser from '../../components/AppBarLanding/AppBar';
+import AppBarUser from '../../components/AppBar/AppBar';
 
 const HomePage = () => {
     const[user,token] = useAuth()

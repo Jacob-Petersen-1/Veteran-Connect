@@ -1,10 +1,13 @@
 import React from "react";
-import LoginForm from "../../components/LoginForm/LoginForm";
 
+//MUI Components/Custom Imports
+import LoginForm from "../../components/LoginForm/LoginForm";
+import AppBarUser from "../../components/AppBar/AppBar";
 
 const LoginPage = () => {
   return (
     <>
+    <AppBarUser/>
       <LoginForm />
     </>
   );

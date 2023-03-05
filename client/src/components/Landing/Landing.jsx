@@ -8,16 +8,15 @@ const Landing = () => {
   return (
     <>
       <Grid>
-        <Box  sx={{  height: '150vh',
-           backgroundImage:
-             "url(https://wallpapercave.com/wp/wp4428421.jpg)",
-             backgroundRepeat: "no-repeat",
-             backgroundSize:"cover",
-             backgroundPosition: "center",
-             
-
-            }}  />
-
+        <Box
+          sx={{
+            height: "150vh",
+            backgroundImage: "url(https://wallpapercave.com/wp/wp4428421.jpg)",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
       </Grid>
     </>
   );

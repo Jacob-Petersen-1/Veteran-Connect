@@ -1,11 +1,14 @@
+
 import React, { useState, useEffect } from 'react';
+
+import AppBarUser from '../../components/AppBar/AppBar';
 
 
 const RegisterPage = () => {
     return ( 
-    <div>
-        <h1>Register Page</h1>
-    </div> );
+    <>
+    <AppBarUser/>
+    </> );
 }
  
 export default RegisterPage;

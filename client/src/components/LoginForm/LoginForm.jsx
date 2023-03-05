@@ -44,7 +44,7 @@ const LoginForm = () => {
           alignItems: "center",
         }}
       >
-        <Typography variant="h4">{"</> Veteran Connect"}</Typography>
+        <Typography variant="h4">{"Veteran Connect"}</Typography>
 
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField

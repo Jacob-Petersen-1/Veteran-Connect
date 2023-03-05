@@ -1,6 +1,6 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
+
 
 //Pages Imports
 import LoginPage from "./pages/LoginPage/LoginPage";
