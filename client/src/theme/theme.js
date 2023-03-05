@@ -13,8 +13,13 @@ export const theme = createTheme({
       default: '#424242', // gray
     },
     text: {
-      primary: '#ffffff', // white
+      primary: '#black', // white
     },
   },
 });
 
+//            size="large"
+// edge="start"
+// color="inherit"
+// aria-label="menu"
+// sx={{ mr: 2 }}

@@ -20,7 +20,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-const LoginForm = () => {
+const LoginFormModal = () => {
   const { loginUser, isServerError } = useContext(AuthContext);
   const defaultValues = { email: "", password: "" };
   const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
@@ -95,4 +95,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default LoginFormModal;
