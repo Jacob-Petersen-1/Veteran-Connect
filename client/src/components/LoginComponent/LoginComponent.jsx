@@ -22,6 +22,7 @@ import Typography from '@mui/material/Typography';
 
 
 const LoginComponent = () => {
+    const [showPassword, setShowPassword] = useState(false);
   const { loginUser, isServerError } = useContext(AuthContext);
   const defaultValues = { email: "", password: "" };
   const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
@@ -82,14 +83,14 @@ const LoginComponent = () => {
             fullWidth
             name="password"
             label="Password"
-            type="password"
+            type={showPassword?"text":"password"}
             id="password"
             value={formData.password}
             onChange={handleInputChange}
           />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            control={<Checkbox onClick={() => setShowPassword(!showPassword)} value="remember" color="primary" />}
+            label="Show Password"
           />
           <Button
             type="submit"

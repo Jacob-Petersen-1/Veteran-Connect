@@ -6,8 +6,7 @@ const useCustomForm = (initialValues = {}, onSubmit) => {
   const handleInputChange = (e) => {
     e.persist();
 
-      setFormValues({ ...formData, [e.target.name]: e.target.value });
-    
+    setFormValues({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
