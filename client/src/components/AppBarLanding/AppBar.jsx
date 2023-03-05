@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 
 //Util
 import AuthContext from "../../Auth/AuthContext";
+import { Link } from "react-router-dom";
 
 //MUI Imports
 import AppBar from "@mui/material/AppBar";
@@ -22,28 +23,43 @@ import LanIcon from "@mui/icons-material/Lan";
 const AppBarUser = () => {
   const { logoutUser, user } = useContext(AuthContext);
 
-
-
-
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
-        <LanIcon              size="large"
+          <LanIcon
+            size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}/>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Veteran Tech Tactics
+            sx={{ mr: 2 }}
+          />
+          <Typography variant="h6" component="div" sx={{ flexGrow: 2 }}>
+            Veteran Connect
           </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Sign Up</Button>
+
+          {user ? (
+            <Button variant="text" sx={{ color: "white" }} onClick={logoutUser}>
+              Logout
+            </Button>
+          ) : (
+            <>
+              <Link to="/login" style={{ textDecoration: "none" }}>
+                <Button variant="text" sx={{ color: "white" }}>
+                  Login
+                </Button>
+              </Link>
+              <Link to="/register" style={{ textDecoration: "none" }}>
+                <Button variant="text" sx={{ color: "white" }}>
+                  Sign Up
+                </Button>
+              </Link>
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
   );
-}
-
+};
 
 export default AppBarUser;
