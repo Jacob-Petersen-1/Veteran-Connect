@@ -44,10 +44,21 @@ export const AuthProvider = ({ children }) => {
         email: registerData.email,
       };
       let response = await axios.post(`/api/users/`, finalData);
-      if (response.status === 201) {
+      if (response.status === 200) {
         console.log("Successful registration! Log in to access token");
         setIsServerError(false);
-        navigate("/home");
+        try {
+          let loginData = {
+            email: finalData.email,
+            password: finalData.password
+          }
+          loginUser(loginData)
+          navigate("/home");
+          
+        } catch (error) {
+          console.log(error)
+          
+        }
       } else {
         navigate("/register");
       }
