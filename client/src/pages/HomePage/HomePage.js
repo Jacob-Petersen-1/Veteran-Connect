@@ -3,16 +3,21 @@ import useAuth from '../../hooks/useAuth';
 
 //MUI Components Imports
 import AppBarUser from '../../components/AppBar/AppBar';
+import { Grid } from '@mui/material';
+import PostFeed from '../../components/PostFeed/PostFeed';
 
 const HomePage = () => {
     const[user,token] = useAuth()
     
     
     return ( 
-    <div>
+    <>
         <AppBarUser/>
-       {console.log("User in homepage",user)}
-    </div> );
+        <PostFeed/>
+
+
+        
+    </> );
 }
  
 export default HomePage;
