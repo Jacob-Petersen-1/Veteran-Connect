@@ -11,10 +11,11 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HeartBrokenIcon from "@mui/icons-material/HeartBroken";
-import CommentIcon from '@mui/icons-material/Comment';
-import MessageIcon from '@mui/icons-material/Message';
-import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
-import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import CommentIcon from "@mui/icons-material/Comment";
+import MessageIcon from "@mui/icons-material/Message";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
+import ShareIcon from "@mui/icons-material/Share";
 
 const Post = ({ post }) => {
   return (
@@ -46,21 +47,24 @@ const Post = ({ post }) => {
         >
           <Grid item>
             <IconButton>
-            <FavoriteBorderIcon color="secondary" />
-
+              <ArrowCircleUpIcon />
             </IconButton>
             <IconButton>
-                <ArrowCircleUpIcon/>
-            </IconButton>
-            <IconButton>
-           <ArrowCircleDownIcon/>
+              <ArrowCircleDownIcon />
             </IconButton>
           </Grid>
           <Grid item>
-            
+            <IconButton>
+              <MessageIcon />
+            </IconButton>
           </Grid>
           <Grid item>
             <Typography>{moment(post.date).format("MM/DD/YYYY")}</Typography>
+          </Grid>
+          <Grid item>
+            <IconButton>
+              <ShareIcon />
+            </IconButton>
           </Grid>
         </Grid>
       </Paper>
