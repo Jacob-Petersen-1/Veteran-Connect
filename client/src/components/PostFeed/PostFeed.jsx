@@ -28,12 +28,12 @@ const PostFeed = () => {
     }
   };
     useEffect(() => {
-      fetchPosts();
-    }, [token]);
+      fetchPosts(token);
+    }, []);
 
   return (
     <>
-      <Box maxWidth="lg" sx={{ flexGrow: 1, overflow: "hidden", px: 3, marginTop: "6rem" }}>
+      <Box maxWidth="55rem"  sx={{ flexGrow: 1, overflow: "hidden", px: 3, marginTop: "6rem", mx:"auto" }}>
         {posts && posts.map((post) => (
           <Post key={post._id} post={post} />
         ))}

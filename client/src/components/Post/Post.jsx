@@ -29,7 +29,9 @@ const Post = ({ post }) => {
       >
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
-            <Avatar alt="Profile Photo" src={post.avatar} />
+            <IconButton>
+              <Avatar alt="Profile Photo" src={post.avatar} />
+            </IconButton>
           </Grid>
           <Grid sx={{ p: 2 }}>
             <Typography variant="h5">{post.name}</Typography>
