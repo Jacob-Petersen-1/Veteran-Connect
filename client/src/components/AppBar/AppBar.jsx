@@ -5,6 +5,7 @@ import AuthContext from "../../Auth/AuthContext";
 import { Link } from "react-router-dom";
 
 //MUI Imports
+import useMediaQuery from "@mui/material/useMediaQuery";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -23,12 +24,27 @@ import { Stack } from "@mui/material";
 
 const AppBarCustom = () => {
   const { logoutUser, user } = useContext(AuthContext);
+  const [anchor, setAnchor] = useState(null);
+  const isMobile = useMediaQuery("(min-width:600px)");
+
+  const handleMenuOpen = (event) => {
+    setAnchor(event.currentTarget);
+  };
+
+  const handleMenuClose = (event) => {
+    setAnchor(null);
+  };
 
   return (
-    <Box sx={{flexGrow: 1}}>
-      <AppBar position="fixed">
-        <Toolbar>
-        <Link to={user?"/home": "/"} style={{color:"white", textDecoration:"none"}}>
+    <AppBar
+      sx={{ background: "transparent", boxShadow: "none" }}
+      position="fixed"
+    >
+      <Toolbar>
+        <Link
+          to={user ? "/home" : "/"}
+          style={{ color: "white", textDecoration: "none" }}
+        >
           <Button
             size="large"
             edge="start"
@@ -41,11 +57,12 @@ const AppBarCustom = () => {
           </Button>
         </Link>
 
-          <Box component="div" sx={{flexGrow:2}}/>
-        
+        <Box component="div" sx={{ flexGrow: 1 }} />
+        {isMobile ? (
+          <>
             {user ? (
               <Button
-                variant="contained"
+                variant="text"
                 sx={{ color: "white" }}
                 onClick={logoutUser}
               >
@@ -54,20 +71,46 @@ const AppBarCustom = () => {
             ) : (
               <>
                 <Link to="/login" style={{ textDecoration: "none" }}>
-                  <Button variant="contained" sx={{ color: "white" }}>
+                  <Button variant="text" sx={{ color: "white" }}>
                     Login
                   </Button>
                 </Link>
                 <Link to="/register" style={{ textDecoration: "none" }}>
-                  <Button variant="contained" sx={{ color: "white" }}>
+                  <Button variant="text" sx={{ color: "white" }}>
                     Sign Up
                   </Button>
                 </Link>
               </>
             )}
-        </Toolbar>
-      </AppBar>
-    </Box>
+          </>
+        ) : (
+          <>
+            <IconButton edge="start" aria-label="menu" onClick={handleMenuOpen}>
+              <MenuIcon sx={{ color: "white" }} />
+            </IconButton>
+          </>
+        )}
+         <Menu
+            id="menu-appbar"
+            anchorEl={anchor}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={Boolean(anchor)}
+            onClose={handleMenuClose}
+          >
+            <MenuItem onClick={handleMenuClose}>Login</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Join The Discussion</MenuItem>
+            
+          </Menu>
+      </Toolbar>
+    </AppBar>
   );
 };
 

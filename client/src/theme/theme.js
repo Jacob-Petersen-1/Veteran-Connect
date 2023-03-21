@@ -13,7 +13,8 @@ export const theme = createTheme({
       default: '#424242', // gray
     },
     text: {
-      primary: '#black', // white
+      primary: '#black',
+      secondary: 'white', // white
     },
   },
 });
