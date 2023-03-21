@@ -13,7 +13,7 @@ const Landing = () => {
   return (
     <Box
     textAlign= "center"
-   paddingTop="7rem"
+   paddingTop="5rem"
       sx={{
         height: "100vh",
         background: "black",

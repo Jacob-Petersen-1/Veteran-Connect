@@ -105,9 +105,9 @@ const AppBarCustom = () => {
             open={Boolean(anchor)}
             onClose={handleMenuClose}
           >
-            <MenuItem onClick={handleMenuClose}>Login</MenuItem>
             <MenuItem onClick={handleMenuClose}>Join The Discussion</MenuItem>
             <MenuItem onClick={handleMenuClose}>Contact The Developer</MenuItem>
+            {user?(<MenuItem onClick={logoutUser}>Log Out</MenuItem>):(null)}
             
           </Menu>
       </Toolbar>
