@@ -53,7 +53,7 @@ const AppBarCustom = () => {
             startIcon={<LanIcon />}
             sx={{ mr: 1 }}
           >
-            Veteran Connect
+            Terminal Talk
           </Button>
         </Link>
 
@@ -107,6 +107,7 @@ const AppBarCustom = () => {
           >
             <MenuItem onClick={handleMenuClose}>Login</MenuItem>
             <MenuItem onClick={handleMenuClose}>Join The Discussion</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Contact The Developer</MenuItem>
             
           </Menu>
       </Toolbar>

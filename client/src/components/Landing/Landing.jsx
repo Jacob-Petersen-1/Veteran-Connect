@@ -1,22 +1,32 @@
 import React from "react";
 
+
+import LoginComponent from "../LoginComponent/LoginComponent";
 // MUI Imports
 
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
+
 
 const Landing = () => {
+  
+  
   return (
-    <Grid
+    <Box
+    textAlign= "center"
+   paddingTop="7rem"
       sx={{
-        height: "150vh",
+        height: "100vh",
         background: "black",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
       }}
     >
+      <Typography variant="h2" gutterBottom>Terminal Talk</Typography>
+      <Typography variant="subtitle1" gutterBottom padding="1rem">Join the community of Veterans Breaking Into Tech</Typography>
+      <LoginComponent/>
+
+
+
       
-    </Grid>
+    </Box>
   );
 };
 

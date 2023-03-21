@@ -10,7 +10,6 @@ const LoginPage = () => {
   return (
     <>
       <AppBarUser />
-      <LoginComponent/>
     </>
   );
 };
