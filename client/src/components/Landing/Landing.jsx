@@ -4,8 +4,18 @@ import LoginComponent from "../LoginComponent/LoginComponent";
 // MUI Imports
 
 import { Box, Container, Grid, Typography } from "@mui/material";
+import { theme } from "../../theme/theme";
+
+
+
+
+
+
 
 const Landing = () => {
+
+  
+  
   return (
     <Grid
       container
@@ -16,11 +26,11 @@ const Landing = () => {
       style={{ minHeight: "100vh" }}
     >
       <Grid padding="1rem" item xs={1}>
-      <Typography variant="h2" gutterBottom>
-        Terminal Talk
+      <Typography lineHeight="1"  variant="h2" gutterBottom>
+        Terminal Talk <span className="blink">|</span>
       </Typography>
       <Typography variant="subtitle1" gutterBottom padding="1rem">
-        Join the community of Veterans Breaking Into Tech
+        Join the community of veterans breaking into tech
       </Typography>
 
       </Grid>

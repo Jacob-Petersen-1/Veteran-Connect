@@ -1,4 +1,9 @@
 import { createTheme } from "@mui/material";
+import { blinkKeyFrames } from "./blinkingAnimation";
+
+
+
+
 
 export const theme = createTheme({
   palette: {
@@ -25,7 +30,7 @@ export const theme = createTheme({
       'Monaco',
       'source-code-pro',
       'Courier New',
-              'monospace',
+      'monospace',
     ].join(','),
   },
   overrides: {
