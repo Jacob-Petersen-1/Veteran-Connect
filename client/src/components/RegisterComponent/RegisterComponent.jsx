@@ -50,15 +50,24 @@ const RegisterComponent = () => {
 
   return (
     <>
+    <Grid      
+    container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      marginTop="6rem"
+      style={{ minHeight: "100vh" }}>
           <Box
+        
             padding="2rem"
             component="form"
+            maxWidth="50rem"
             noValidate
             onSubmit={handleSubmit}
             sx={{ mt: 1 }}
           >
           <Typography paddingTop="3rem" component="h1" variant="h5">
-            Register
+            Register To join the Community!
           </Typography>
             <TextField
               margin="normal"
@@ -128,6 +137,8 @@ const RegisterComponent = () => {
               Register!
             </Button>
           </Box>
+
+    </Grid>
     </>
 
         
