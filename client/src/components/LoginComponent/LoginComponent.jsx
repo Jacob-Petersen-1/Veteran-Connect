@@ -38,7 +38,7 @@ const LoginComponent = () => {
 
   return (
 
-        <Box component="form" padding="3rem" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+        <Box component="form" padding="2rem" maxWidth="50rem" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <Typography>Sign In</Typography>
           <TextField
             margin="normal"

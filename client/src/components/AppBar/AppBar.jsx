@@ -80,6 +80,11 @@ const AppBarCustom = () => {
                     Sign Up
                   </Button>
                 </Link>
+                <Link to="/register" style={{ textDecoration: "none" }}>
+                  <Button variant="text" sx={{ color: "white" }}>
+                    Contact Developer
+                  </Button>
+                </Link>
               </>
             )}
           </>
