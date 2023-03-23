@@ -5,17 +5,11 @@ import LoginComponent from "../LoginComponent/LoginComponent";
 
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { theme } from "../../theme/theme";
-
-
-
-
+import Typewriter from "../TypeWriter/TypeWriter";
 
 
 
 const Landing = () => {
-
-  
-  
   return (
     <Grid
       container
@@ -26,9 +20,7 @@ const Landing = () => {
       style={{ minHeight: "100vh" }}
     >
       <Grid padding="1rem" item xs={1}>
-      <Typography lineHeight="1"  variant="h2" gutterBottom>
-        Terminal Talk <span className="blink">|</span>
-      </Typography>
+      <Typewriter text="Terminal Talk" variant="h2"/>
       <Typography variant="subtitle1" gutterBottom padding="1rem">
         Join the community of veterans breaking into tech
       </Typography>
