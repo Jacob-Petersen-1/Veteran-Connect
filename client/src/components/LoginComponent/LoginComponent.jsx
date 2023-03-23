@@ -17,6 +17,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
+import LockPersonSharpIcon from '@mui/icons-material/LockPersonSharp';
+import { Stack } from "@mui/material";
 
 
 
@@ -39,7 +41,11 @@ const LoginComponent = () => {
   return (
 
         <Box component="form" padding="2rem" maxWidth="50rem" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-          <Typography>Sign In</Typography>
+          
+          <Stack direction="row" alignItems="center" gap={1}>
+            <LockPersonSharpIcon/>
+            <Typography>Sign In</Typography>
+          </Stack>
           <TextField
             margin="normal"
             required

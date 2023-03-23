@@ -48,16 +48,16 @@ const Post = ({ post }) => {
           xs={11}
         >
           <Grid item>
-            <IconButton>
-              <ArrowCircleUpIcon />
+            <IconButton >
+              <ArrowCircleUpIcon sx={{ color: "white" }} />
             </IconButton>
             <IconButton>
-              <ArrowCircleDownIcon />
+              <ArrowCircleDownIcon sx={{ color: "white" }} />
             </IconButton>
           </Grid>
           <Grid item>
             <IconButton>
-              <MessageIcon />
+              <MessageIcon sx={{ color: "white" }} />
             </IconButton>
           </Grid>
           <Grid item>
@@ -65,7 +65,7 @@ const Post = ({ post }) => {
           </Grid>
           <Grid item>
             <IconButton>
-              <ShareIcon />
+              <ShareIcon sx={{ color: "white" }} />
             </IconButton>
           </Grid>
         </Grid>
