@@ -26,7 +26,7 @@ function setUserObject(user) {
 
 // AuthProvider
 export const AuthProvider = ({ children }) => {
-  const userToken = localStorage.getItem("token");
+  const userToken = JSON.parse(localStorage.getItem("token"));
   const decodedUser = userToken ? jwtDecode(userToken) : null
   const [token, setToken] = useState(userToken);
   const [user, setUser] = useState(setUserObject(decodedUser));
@@ -72,8 +72,8 @@ export const AuthProvider = ({ children }) => {
     try {
       let response = await axios.post(`/api/auth/`, loginData);
       if (response.status === 200) {
-        localStorage.setItem("token", JSON.stringify(response.data.token));
-        setToken(JSON.parse(localStorage.getItem("token")));
+        localStorage.setItem('token', JSON.stringify(response.data.token));
+        setToken(JSON.parse(localStorage.getItem('token')));
         let loggedInUser = jwtDecode(response.data.token)
         setUser(setUserObject(loggedInUser))
         setIsServerError(false);

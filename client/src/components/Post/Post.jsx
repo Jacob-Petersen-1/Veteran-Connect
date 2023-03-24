@@ -33,9 +33,9 @@ const Post = ({ post }) => {
               <Avatar alt="Profile Photo" src={post.avatar} />
             </IconButton>
           </Grid>
-          <Grid sx={{ p: 2 }}>
+          <Grid item sx={{ p: 2 }}>
             <Typography variant="h5">{post.name}</Typography>
-            <Grid item xs>
+            <Grid item >
               <Typography>{post.text}</Typography>
             </Grid>
           </Grid>
@@ -45,7 +45,7 @@ const Post = ({ post }) => {
           direction="row"
           justifyContent="space-between"
           alignItems="flex-end"
-          xs={11}
+        
         >
           <Grid item>
             <IconButton >

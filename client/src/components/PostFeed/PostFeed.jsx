@@ -12,7 +12,6 @@ const PostFeed = () => {
   const [user, token] = useAuth();
   const [posts, setPosts] = useState();
 
-  
   // TODO UNCOMMENT USE EFFECT
   const fetchPosts = async () => {
     try {
@@ -22,21 +21,27 @@ const PostFeed = () => {
         },
       });
       setPosts(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
   };
-    useEffect(() => {
-      fetchPosts(token);
-    }, []);
+  useEffect(() => {
+    fetchPosts();
+  }, [token]);
 
   return (
     <>
-      <Box maxWidth="55rem"  sx={{ flexGrow: 1, overflow: "hidden", px: 3, marginTop: "6rem", mx:"auto" }}>
-        {posts && posts.map((post) => (
-          <Post key={post._id} post={post} />
-        ))}
+      <Box
+        maxWidth="55rem"
+        sx={{
+          flexGrow: 1,
+          overflow: "hidden",
+          px: 3,
+          marginTop: "6rem",
+          mx: "auto",
+        }}
+      >
+        {posts && posts.map((post) => <Post key={post._id} post={post} />)}
       </Box>
     </>
   );
