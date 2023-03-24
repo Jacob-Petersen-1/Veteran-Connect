@@ -61,13 +61,9 @@ const AppBarCustom = () => {
         {isMobile ? (
           <>
             {user ? (
-              <Button
-                variant="text"
-                sx={{ color: "white" }}
-                onClick={logoutUser}
-              >
-                Logout
-              </Button>
+              <IconButton edge="start" aria-label="menu" onClick={handleMenuOpen}>
+                    <Avatar alt="profile-photo" src={user.avatar}/>
+                </IconButton>
             ) : (
               <>
                 <Link to="/register" style={{ textDecoration: "none" }}>
