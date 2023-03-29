@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 
 //Util
 import AuthContext from "../../Auth/AuthContext";
@@ -10,17 +10,13 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import LanIcon from "@mui/icons-material/Lan";
-import { Stack } from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+import TerminalIcon from '@mui/icons-material/Terminal';
 
 const AppBarCustom = () => {
   const { logoutUser, user } = useContext(AuthContext);
@@ -31,9 +27,11 @@ const AppBarCustom = () => {
     setAnchor(event.currentTarget);
   };
 
-  const handleMenuClose = (event) => {
+  const handleMenuClose = () => {
     setAnchor(null);
   };
+
+  
 
   return (
     <AppBar
@@ -50,7 +48,7 @@ const AppBarCustom = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            startIcon={<LanIcon />}
+            startIcon={<TerminalIcon/>}
             sx={{ mr: 1 }}
           >
             Terminal Talk
@@ -61,9 +59,13 @@ const AppBarCustom = () => {
         {isMobile ? (
           <>
             {user ? (
-              <IconButton edge="start" aria-label="menu" onClick={handleMenuOpen}>
-                    <Avatar alt="profile-photo" src={user.avatar}/>
-                </IconButton>
+              <IconButton
+                edge="start"
+                aria-label="menu"
+                onClick={handleMenuOpen}
+              >
+                <Avatar alt="profile-photo" src={user.avatar} />
+              </IconButton>
             ) : (
               <>
                 <Link to="/register" style={{ textDecoration: "none" }}>
@@ -82,30 +84,33 @@ const AppBarCustom = () => {
         ) : (
           <>
             <IconButton edge="start" aria-label="menu" onClick={handleMenuOpen}>
-              <MenuIcon sx={{ color: "white" }} />
+           <MenuIcon sx={{color:"white"}}/>
             </IconButton>
           </>
         )}
-         <Menu
-            id="menu-appbar"
-            anchorEl={anchor}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            open={Boolean(anchor)}
-            onClose={handleMenuClose}
-          >
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchor}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchor)}
+          onClose={handleMenuClose}
+        >
+          {user ? (
+            <MenuItem ><Link style={{textDecoration:'none'}} to='/profile'>Profile</Link></MenuItem>
+          ) : (
             <MenuItem onClick={handleMenuClose}>Join The Discussion</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Contact The Developer</MenuItem>
-            {user?(<MenuItem onClick={logoutUser}>Log Out</MenuItem>):(null)}
-            
-          </Menu>
+          )}
+          <MenuItem onClick={handleMenuClose}>Contact The Developer</MenuItem>
+          {user ? <MenuItem onClick={logoutUser}>Log Out</MenuItem> : null}
+        </Menu>
       </Toolbar>
     </AppBar>
   );
