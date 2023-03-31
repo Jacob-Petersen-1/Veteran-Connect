@@ -4,19 +4,16 @@ import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../../Auth/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
 
-
 //MUI Imports
-import Avatar from "@mui/material/Avatar";
+
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import { Alert, AlertTitle, IconButton } from "@mui/material";
+import { Alert, AlertTitle } from "@mui/material";
 
 const RegisterComponent = () => {
   const [passwordError, setPasswordError] = useState(false);
@@ -50,98 +47,94 @@ const RegisterComponent = () => {
 
   return (
     <>
-    <Grid      
-    container
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      marginTop="6rem"
-      style={{ minHeight: "100vh" }}>
-          <Box
-        
-            padding="2rem"
-            component="form"
-            maxWidth="50rem"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 1 }}
-          >
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        marginTop="6rem"
+        style={{ minHeight: "100vh" }}
+      >
+        <Box
+          padding="2rem"
+          component="form"
+          maxWidth="50rem"
+          noValidate
+          onSubmit={handleSubmit}
+          sx={{ mt: 1 }}
+        >
           <Typography paddingTop="3rem" component="h1" variant="h5">
             Register To join the Community!
           </Typography>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="name"
-              label="Full-Name"
-              type="name"
-              id="name"
-              value={formData.name}
-              onChange={handleInputChange}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="password"
-              label="Password"
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="password"
-              label="Verify Password"
-              type={showPassword ? "text" : "password"}
-              name="password"
-              onChange={passwordCheck}
-            />
-            {passwordError ? (
-              <Alert severity="warning">
-                <AlertTitle>Warning</AlertTitle>
-                Passwords do not match — <strong>verify your password!</strong>
-              </Alert>
-            ) : null}
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="name"
+            label="Full-Name"
+            type="name"
+            id="name"
+            value={formData.name}
+            onChange={handleInputChange}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="password"
+            label="Password"
+            type={showPassword ? "text" : "password"}
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="password"
+            label="Verify Password"
+            type={showPassword ? "text" : "password"}
+            name="password"
+            onChange={passwordCheck}
+          />
+          {passwordError ? (
+            <Alert severity="warning">
+              <AlertTitle>Warning</AlertTitle>
+              Passwords do not match — <strong>verify your password!</strong>
+            </Alert>
+          ) : null}
 
-            <FormControlLabel
-              control={
-                <Checkbox
-                  
-                  color="primary"
-                  onClick={() => setShowPassword(!showPassword)}
-                />
-              }
-              label="Show Password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Register!
-            </Button>
-          </Box>
-
-    </Grid>
+          <FormControlLabel
+            control={
+              <Checkbox
+                color="primary"
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            }
+            label="Show Password"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Register!
+          </Button>
+        </Box>
+      </Grid>
     </>
-
-        
   );
 };
 

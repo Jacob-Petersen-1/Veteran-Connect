@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import AppBarUser from "../../components/AppBar/AppBar";
 
 import PostFeed from "../../components/PostFeed/PostFeed";
+import CreatePost from "../../components/CreatePost/CreatePost";
 
 const HomePage = () => {
 

@@ -7,6 +7,7 @@ import axios from "axios";
 //Components
 import Post from "../Post/Post";
 import { Box, Grid } from "@mui/material";
+import CreatePost from "../CreatePost/CreatePost";
 
 const PostFeed = () => {
   const [user, token] = useAuth();
@@ -41,6 +42,7 @@ const PostFeed = () => {
           mx: "auto",
         }}
       >
+       <CreatePost fetchPosts={fetchPosts}/> 
         {posts && posts.map((post) => <Post key={post._id} post={post} />)}
       </Box>
     </>

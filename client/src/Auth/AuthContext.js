@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
 
 
-//TODO Finish Testing
+
   const registerUser = async (registerData) => {
     try {
       let finalData = {

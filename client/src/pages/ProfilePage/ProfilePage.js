@@ -10,7 +10,6 @@ const ProfilePage = () => {
     <>
     <AppBarCustom/>
     <Typography>Profile</Typography>
-    
     </> );
 <>
 
