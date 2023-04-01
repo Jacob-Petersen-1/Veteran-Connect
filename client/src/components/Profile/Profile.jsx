@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import  axios  from "axios";
 
 //MUI Imports
-import { Avatar, Container, Box, Typography, Grid, Paper,Chip,IconButton} from "@mui/material";
+import { Avatar, Container, Box, Typography, Grid, Paper,Chip} from "@mui/material";
 import Loader from 'react-loading'
 
 

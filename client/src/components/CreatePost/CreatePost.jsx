@@ -8,8 +8,7 @@ import AuthContext from "../../Auth/AuthContext";
 
 // MUI Imports
 import Paper from "@mui/material/Paper";
-import { Box, IconButton, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid";
+import {IconButton, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";

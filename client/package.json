@@ -19,7 +19,6 @@
     "react-moment": "^1.1.3",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
-    "react-scripts": "5.0.1",
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
@@ -49,8 +48,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000",
   "devDependencies": {
-    "@iconify/react": "^4.1.0"
-  }
+    "react-scripts": "^5.0.1"
+  },
+  "proxy": "http://localhost:5000"
 }

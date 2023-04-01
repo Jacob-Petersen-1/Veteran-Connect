@@ -6,7 +6,7 @@ import axios from "axios";
 
 //Components
 import Post from "../Post/Post";
-import { Box, Grid } from "@mui/material";
+import { Box} from "@mui/material";
 import CreatePost from "../CreatePost/CreatePost";
 
 const PostFeed = () => {

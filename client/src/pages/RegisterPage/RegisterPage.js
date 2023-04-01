@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import AppBarUser from '../../components/AppBar/AppBar';
 import RegisterComponent from '../../components/RegisterComponent/RegisterComponent';
