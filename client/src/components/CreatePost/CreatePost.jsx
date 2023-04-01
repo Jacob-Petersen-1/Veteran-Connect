@@ -51,6 +51,8 @@ const CreatePost = ({ fetchPosts }) => {
   return (
     <>
       <Paper
+      component="form"
+      onSubmit={handleSubmit}
         sx={{
           my: 1,
           mx: "auto",
@@ -60,11 +62,15 @@ const CreatePost = ({ fetchPosts }) => {
         <IconButton>
           <Avatar alt="Profile Photo" src={user.avatar} />
         </IconButton>
-        <form onSubmit={handleSubmit}>
+        <Typography sx={{p:1}}>{user.name}</Typography>
+       
         <TextField
+        sx={{
+          width:"100%"
+        }}
           id="outlined-multiline-static"
           multiline
-          label="Whats on your mind?"
+          label="What is on your mind?"
           type="text"
           name="text"
           rows={3}
@@ -73,11 +79,14 @@ const CreatePost = ({ fetchPosts }) => {
           onChange={handleInputChange}
         />
 
-        <Button type="submit" variant="contained">
+        <Button type="submit" variant="contained" sx={{
+          width:"100%",
+          mt:1
+        }}>
           SEND
         </Button>
 
-        </form>
+      
       </Paper>
     </>
   );
