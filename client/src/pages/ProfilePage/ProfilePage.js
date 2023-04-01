@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-//MUI Imports
+//Component Imports
 import AppBarCustom from '../../components/AppBar/AppBar';
-import { Typography } from '@mui/material';
+import Profile from '../../components/Profile/Profile';
+//MUI Imports
+
 
 
 const ProfilePage = () => {
     return ( 
     <>
     <AppBarCustom/>
-    <Typography>Profile</Typography>
+    <Profile/>
+    
     </> );
 <>
 

@@ -35,7 +35,7 @@ const AppBarCustom = () => {
 
   return (
     <AppBar
-      sx={{ background: "transparent", boxShadow: "none" }}
+      sx={{ background: "black", boxShadow: "none" }}
       position="fixed"
     >
       <Toolbar>
