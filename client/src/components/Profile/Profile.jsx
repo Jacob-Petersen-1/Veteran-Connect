@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import  axios  from "axios";
 
 //MUI Imports
-import { Avatar, Container, Box, Typography, Grid, Paper,Chip} from "@mui/material";
+import { Avatar, Container, Typography, Grid, Paper,Chip} from "@mui/material";
 import Loader from 'react-loading'
 
 
@@ -39,7 +39,7 @@ const Profile = () => {
 
   useEffect(() => {
     getUserProfile()
-  }, [userProfile]);
+  }, []);
 
 if (loading){
     return(

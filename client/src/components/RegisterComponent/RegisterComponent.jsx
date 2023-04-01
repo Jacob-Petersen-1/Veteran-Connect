@@ -34,10 +34,7 @@ const RegisterComponent = () => {
     }
   };
 
-  const handleClickShowPassword = (e) => {
-    e.preventDefault();
-    setShowPassword(true);
-  };
+
 
   useEffect(() => {
     if (isServerError) {

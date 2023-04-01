@@ -3,8 +3,8 @@ import React from "react";
 import LoginComponent from "../LoginComponent/LoginComponent";
 // MUI Imports
 
-import { Box, Container, Grid, Typography } from "@mui/material";
-import { theme } from "../../theme/theme";
+import {Grid, Typography } from "@mui/material";
+
 import Typewriter from "../TypeWriter/TypeWriter";
 
 
