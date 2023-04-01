@@ -16,7 +16,7 @@ import Button from "@mui/material/Button";
 
 const CreatePost = ({ fetchPosts }) => {
   const [user, token] = useAuth();
-  const { isServerError } = useContext(AuthContext);
+  const { isServerError,setIsServerError } = useContext(AuthContext);
   const defaultValues = { text: "" };
   const sendPost = async (postData) => {
     try {
@@ -29,8 +29,11 @@ const CreatePost = ({ fetchPosts }) => {
         .then(() => {
           console.log("Post Created");
           fetchPosts();
+          reset()
+          setIsServerError(false)
         });
     } catch (error) {
+      setIsServerError(true)
       console.error("Error Creating post:", error);
     }
   };
@@ -39,12 +42,15 @@ const CreatePost = ({ fetchPosts }) => {
     sendPost
   );
 
-
+  useEffect(() => {
+    if (isServerError) {
+      reset();
+    }
+  }, [isServerError]);
 
   return (
     <>
       <Paper
-      onSubmit ={handleSubmit}
         sx={{
           my: 1,
           mx: "auto",
