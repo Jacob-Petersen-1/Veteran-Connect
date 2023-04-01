@@ -31,7 +31,7 @@ function App() {
             }
           />
           <Route
-            path="/profile"
+            path="/profile/:userProfile"
             element={
               <PrivateRoute>
                 <ProfilePage />

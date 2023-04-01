@@ -1,14 +1,42 @@
 import React, { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
+import { useParams } from "react-router-dom";
+import  axios  from "axios";
 
 //MUI Imports
 import { Avatar, Container, Box, Typography, Grid, Paper } from "@mui/material";
 
 const Profile = () => {
-  const [user, token] = useAuth();
+  const [token] = useAuth();
+  const {userProfile} = useParams()
+  const [profile,setProfile] = useState()
+
+  
+
+  const getUserProfile = async () => {
+    const apiUrl = `/api/profile/user/${userProfile}`
+    try {
+        let response = await axios.get(apiUrl,{
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        })
+        setProfile(response.data)
+    } catch (error) {
+        console.error(error.message)
+    }
+  }
+
+  useEffect(() => {
+    getUserProfile()
+  }, [userProfile]);
+
+
+
+
   return (
     <Container>
-        <Grid >
+        {/* <Grid >
           <Grid item xs={12}>
             <Paper
               sx={{
@@ -24,22 +52,23 @@ const Profile = () => {
             >
               <Avatar
                 alt="Profile Picture"
-                src={user.avatar}
+                src={profile.user.avatar}
                 sx={{ width: 250, height: 250, my:4 }}
               />
               <Typography variant="h4" >
-                {user.name}
+                {profile.user.name}
               </Typography>
               <Typography variant="h6" >
-                Software Developer
+                {profile.status}
               </Typography>
               <Typography variant="body1" component="p">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                {profile.bio}
               </Typography>
             </Paper>
           </Grid>
-        </Grid>
+        </Grid> */}
+
+        {console.log(profile)}
    
 
     </Container>

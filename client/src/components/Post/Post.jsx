@@ -2,6 +2,7 @@ import React from "react";
 
 //utils
 import * as moment from "moment";
+import { useNavigate,useHref } from "react-router-dom";
 
 //Component Mui Imports
 import Paper from "@mui/material/Paper";
@@ -18,6 +19,13 @@ import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ShareIcon from "@mui/icons-material/Share";
 
 const Post = ({ post }) => {
+  const navigate = useNavigate();
+  const profileUrl = useHref(`/profile/${post.user}`)
+
+  const handleProfileClick = () => {
+    navigate(profileUrl);
+  };
+
   return (
     <>
       <Paper
@@ -29,13 +37,13 @@ const Post = ({ post }) => {
       >
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
-            <IconButton>
+            <IconButton onClick={handleProfileClick}>
               <Avatar alt="Profile Photo" src={post.avatar} />
             </IconButton>
           </Grid>
           <Grid item sx={{ p: 2 }}>
             <Typography variant="h5">{post.name}</Typography>
-            <Grid item >
+            <Grid item>
               <Typography>{post.text}</Typography>
             </Grid>
           </Grid>
@@ -45,10 +53,9 @@ const Post = ({ post }) => {
           direction="row"
           justifyContent="space-between"
           alignItems="flex-end"
-        
         >
           <Grid item>
-            <IconButton >
+            <IconButton>
               <ArrowCircleUpIcon sx={{ color: "white" }} />
             </IconButton>
             <IconButton>
