@@ -45,7 +45,6 @@ export const AuthProvider = ({ children }) => {
       };
       let response = await axios.post(`/api/users/`, finalData);
       if (response.status === 200) {
-        console.log("Successful registration! Log in to access token");
         setIsServerError(false);
         try {
           let loginData = {
