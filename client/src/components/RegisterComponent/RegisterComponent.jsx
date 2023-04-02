@@ -14,6 +14,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Alert, AlertTitle } from "@mui/material";
+import Typewriter from "../TypeWriter/TypeWriter";
 
 const RegisterComponent = () => {
   const [passwordError, setPasswordError] = useState(false);
@@ -60,9 +61,7 @@ const RegisterComponent = () => {
           onSubmit={handleSubmit}
           sx={{ mt: 1 }}
         >
-          <Typography paddingTop="3rem" component="h1" variant="h5">
-            Register To join the Community!
-          </Typography>
+          <Typewriter text={"Register to join the Community"} variant={"h5"}/>
           <TextField
             margin="normal"
             required

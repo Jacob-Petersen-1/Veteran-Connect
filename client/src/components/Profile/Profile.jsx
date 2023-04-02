@@ -84,8 +84,6 @@ const Profile = () => {
 
   return (
     <Container sx={{ maxWidth: "100%" }}>
-      {console.log(user)}
-      {console.log(profile)}
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper
