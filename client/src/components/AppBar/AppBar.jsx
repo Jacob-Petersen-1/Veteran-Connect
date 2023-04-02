@@ -17,12 +17,24 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from '@mui/icons-material/Menu';
 import TerminalIcon from '@mui/icons-material/Terminal';
 
+
+ 
+
+
+
 const AppBarCustom = () => {
   const navigate = useNavigate();
   const { logoutUser, user } = useContext(AuthContext);
   const [anchor, setAnchor] = useState(null);
   const isMobile = useMediaQuery("(min-width:600px)");
-  const profileUrl = useHref(`/profile/${user.id}`)
+  const profileUrl = user ? ProfileLink(user.id): ''
+
+// If it works It works I suppose
+  function ProfileLink(userId){
+    const profileUrl = useHref(`/profile/${userId}`) 
+    return profileUrl;
+  }
+   
 
   const handleMenuOpen = (event) => {
     setAnchor(event.currentTarget);
@@ -37,6 +49,7 @@ const AppBarCustom = () => {
 
 
   }
+
 
   
 
