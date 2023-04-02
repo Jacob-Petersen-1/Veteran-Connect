@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 //Utils
 import useAuth from "../../hooks/useAuth";
-import { useParams, a } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import axios from "axios";
 
 //MUI Imports
@@ -107,27 +107,27 @@ const Profile = () => {
             </Typography>
             {profile.social && (
               <Typography variant="body1" component="p">
-                <a href={`https://github.com/${profile.githubusername}`} target="_blank" rel="noopener">
+                <a href={`https://github.com/${profile.githubusername}`} target="_blank" rel="noopener noreferrer">
                   <IconButton>
                     <GitHubIcon sx={{ color: "white" }} />
                   </IconButton>
                 </a>
-                <a href={`https://${profile.social.linkedin}`} target="_blank" rel="noopener">
+                <a href={`https://${profile.social.linkedin}`} target="_blank" rel="noopener noreferrer">
                   <IconButton>
                     <LinkedInIcon sx={{ color: "white" }} />
                   </IconButton>
                 </a>
-                <a href={`https://${profile.social.facebook}`} target="_blank" rel="noopener">
+                <a href={`https://${profile.social.facebook}`} target="_blank" rel="noopener noreferrer">
                   <IconButton>
                     <FacebookIcon sx={{ color: "white" }} />
                   </IconButton>
                 </a>
-                <a href={`https://${profile.social.twitter}`} target="_blank" rel="noopener">
+                <a href={`https://${profile.social.twitter}`} target="_blank" rel="noopener noreferrer">
                   <IconButton>
                     <TwitterIcon sx={{ color: "white" }} />
                   </IconButton>
                 </a>
-                <a href={`https://${profile.social.instagram}`} target="_blank" rel="noopener">
+                <a href={`https://${profile.social.instagram}`} target="_blank" rel="noopener noreferrer">
                   <IconButton>
                     <InstagramIcon sx={{ color: "white" }} />
                   </IconButton>
