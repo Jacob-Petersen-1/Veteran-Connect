@@ -10,7 +10,7 @@ import { Box} from "@mui/material";
 import CreatePost from "../CreatePost/CreatePost";
 
 const PostFeed = () => {
-  const [token] = useAuth();
+  const [user,token] = useAuth();
   const [posts, setPosts] = useState();
 
   // TODO UNCOMMENT USE EFFECT
