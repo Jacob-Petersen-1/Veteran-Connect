@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 
 //Util
 import AuthContext from "../../Auth/AuthContext";
-import { Link } from "react-router-dom";
+import { useNavigate,useHref,Link } from "react-router-dom";
 
 //MUI Imports
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -18,9 +18,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import TerminalIcon from '@mui/icons-material/Terminal';
 
 const AppBarCustom = () => {
+  const navigate = useNavigate();
   const { logoutUser, user } = useContext(AuthContext);
   const [anchor, setAnchor] = useState(null);
   const isMobile = useMediaQuery("(min-width:600px)");
+  const profileUrl = useHref(`/profile/${user.id}`)
 
   const handleMenuOpen = (event) => {
     setAnchor(event.currentTarget);
@@ -29,6 +31,12 @@ const AppBarCustom = () => {
   const handleMenuClose = () => {
     setAnchor(null);
   };
+
+  const handleProfileClick = () => {
+    navigate(profileUrl)
+
+
+  }
 
   
 
@@ -103,7 +111,7 @@ const AppBarCustom = () => {
           onClose={handleMenuClose}
         >
           {user ? (
-            <MenuItem ><Link style={{textDecoration:'none'}} to='/profile'>Profile</Link></MenuItem>
+            <MenuItem onClick={handleProfileClick} >Profile</MenuItem>
           ) : (
             <MenuItem onClick={handleMenuClose}>Join The Discussion</MenuItem>
           )}
