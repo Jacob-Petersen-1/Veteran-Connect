@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState} from 'react';
+
+
 
 //utils
 import * as moment from "moment";
 import { useNavigate,useHref } from "react-router-dom";
+import axios from "axios"
+import useAuth from "../../hooks/useAuth"
 
 //Component Mui Imports
 import Paper from "@mui/material/Paper";
@@ -16,12 +20,44 @@ import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ShareIcon from "@mui/icons-material/Share";
 
 const Post = ({ post }) => {
+  const [user,token] = useAuth()
   const navigate = useNavigate();
   const profileUrl = useHref(`/profile/${post.user}`)
+ const [upVoteCounter, setUpVoteCounter] = useState(post.likes.length)
 
   const handleProfileClick = () => {
     navigate(profileUrl);
   };
+
+  const handleUpVote = async () => {
+    try {
+      await axios.put(`/api/posts/like/${post._id}`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+      })
+      setUpVoteCounter(upVoteCounter+1)
+    } catch (error) {
+      console.log(error.msg)
+      
+    }
+  }
+
+  const handleDownVote = async () =>{
+    try {
+      await axios.put(`/api/posts/unlike/${post._id}`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+      })
+      setUpVoteCounter(upVoteCounter-1)
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
+
+
 
   return (
     <>
@@ -52,10 +88,11 @@ const Post = ({ post }) => {
           alignItems="flex-end"
         >
           <Grid item>
-            <IconButton>
+            <IconButton onClick={handleUpVote}>
               <ArrowCircleUpIcon sx={{ color: "white" }} />
             </IconButton>
-            <IconButton>
+            <Typography sx={{ display: 'inline-flex', alignItems: 'center' }}>{upVoteCounter}</Typography>
+            <IconButton onClick={handleDownVote}>
               <ArrowCircleDownIcon sx={{ color: "white" }} />
             </IconButton>
           </Grid>
@@ -63,6 +100,7 @@ const Post = ({ post }) => {
             <IconButton>
               <MessageIcon sx={{ color: "white" }} />
             </IconButton>
+            <Typography sx={{ display: 'inline-flex', alignItems: 'center' }}>{post.comments.length}</Typography>
           </Grid>
           <Grid item>
             <Typography>{moment(post.date).format("MM/DD/YYYY")}</Typography>
