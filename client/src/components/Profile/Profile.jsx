@@ -55,7 +55,7 @@ const Profile = () => {
     <Container sx={{maxWidth:"100%"}}>
       {console.log(profile)}
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid item xs={12} >
           <Paper
             sx={{
               padding: 10,
@@ -72,30 +72,30 @@ const Profile = () => {
               src={profile.user.avatar}
               sx={{ width: 250, height: 250, my: 4 }}
             />
-            <Typography variant="h4" sx={{fontSize: "6vw"}}>{profile.user.name}</Typography>
-            <Typography variant="h6" sx={{fontSize: "4vw"}}>{profile.status}</Typography>
-            <Typography variant="body1"><strong>About: </strong>{profile.bio}</Typography>
+            <Typography variant="h4" >{profile.user.name}</Typography>
+            <Typography variant="h6" >{profile.status}</Typography>
+            <Typography variant="body1" ><strong>About: </strong>{profile.bio}</Typography>
             {profile.company && (
-              <Typography variant="body1">
+              <Typography variant="body1" >
                 <strong>Company: </strong> {profile.company}
               </Typography>
             )}
             {profile.website && (
-              <Typography variant="body1">
+              <Typography variant="body1" >
                 <strong>Website: </strong> {profile.website}
               </Typography>
             )}
             {profile.location && (
-              <Typography variant="body1" component="p">
+              <Typography variant="body1" component="p" >
                 <strong>Location: </strong> {profile.location}
               </Typography>
             )}
             {profile.servicebranch && (
-              <Typography variant="body1" component="p">
+              <Typography variant="body1" component="p" >
                 <strong>Service Branch: </strong> {profile.servicebranch}
               </Typography>
             )}
-            <Typography variant="body1">
+            <Typography variant="body1" >
               <strong>Skills: </strong>
               {profile.skills && profile.skills.length > 0 ? (
                 profile.skills.map((skill) => (
