@@ -7,6 +7,7 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import HomePage from "./pages/HomePage/HomePage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import ProfileCreationPage from "./pages/ProfileCreationPage/ProfileCreationPage";
 
 //Utils Imports
 import PrivateRoute from "./utils/PrivateRoute";
@@ -34,6 +35,14 @@ function App() {
             element={
               <PrivateRoute>
                 <ProfilePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile/creation"
+            element={
+              <PrivateRoute>
+                <ProfileCreationPage />
               </PrivateRoute>
             }
           />

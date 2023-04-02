@@ -26,6 +26,13 @@ const ProfileCreationAlert = ({isOwner,open,setOpen}) => {
         navigate("/home")
 
       };
+
+      const handleNavigateProfile = () =>{
+        setOpen(false)
+        navigate("/profile/creation")
+      }
+
+
     
     return ( 
         <>
@@ -44,7 +51,7 @@ const ProfileCreationAlert = ({isOwner,open,setOpen}) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Back To Feed</Button>
-          {isOwner ? <Button onClick={handleClose}>Create a Profile</Button> : null}
+          {isOwner ? <Button onClick={handleNavigateProfile}>Create a Profile</Button> : null}
         </DialogActions>
       </Dialog>
         </>
