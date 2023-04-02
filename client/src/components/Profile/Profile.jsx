@@ -24,6 +24,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Loader from "react-loading";
 import ProfileCreationAlert from "../ProfileCreationAlert/ProfileCreationAlert";
 
+
 const Profile = () => {
   const [user, token] = useAuth();
   const { userProfile } = useParams();
@@ -83,6 +84,7 @@ const Profile = () => {
   }
 
   return (
+    <>
     <Container sx={{ maxWidth: "100%" }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -150,7 +152,7 @@ const Profile = () => {
                   </IconButton>
                 </a>
                 <a
-                  href={`https://${profile.social.linkedin}`}
+                  href={`${profile.social.linkedin}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -190,7 +192,42 @@ const Profile = () => {
           </Paper>
         </Grid>
       </Grid>
+      <Paper sx={{
+              padding: 5,
+              textAlign: "left",
+              margin: "auto",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}>
+              <Typography variant="h6">Experience</Typography>
+              <Typography variant="body1">
+              <strong>Companies: </strong>
+              {profile.experience && profile.experience.length > 0 ? (
+                profile.experience.map((experience) => (
+                  <Chip label={experience.company +" " + experience.title} key={experience} />
+                ))
+              ) : (
+                <span>No experience listed</span>
+              )}
+            </Typography>
+              <Typography variant="h6">Education</Typography>
+              <Typography variant="body1">
+              <strong>Education: </strong>
+              {profile.education && profile.education.length > 0 ? (
+                profile.education.map((education) => (
+                  <Chip label={education.school +" " + education.degree} key={education} />
+                ))
+              ) : (
+                <span>No experience listed</span>
+              )}
+            </Typography>
+
+
+      </Paper>
     </Container>
+    </>
   );
 };
 
