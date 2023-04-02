@@ -1,12 +1,10 @@
-import React, { useState} from 'react';
-
-
+import React, { useState } from "react";
 
 //utils
 import * as moment from "moment";
-import { useNavigate,useHref } from "react-router-dom";
-import axios from "axios"
-import useAuth from "../../hooks/useAuth"
+import { useNavigate, useHref } from "react-router-dom";
+import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
 //Component Mui Imports
 import Paper from "@mui/material/Paper";
@@ -18,12 +16,15 @@ import MessageIcon from "@mui/icons-material/Message";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ShareIcon from "@mui/icons-material/Share";
+import PostModal from "../PostCommentModal/PostCommentModal";
 
 const Post = ({ post }) => {
-  const [user,token] = useAuth()
+  const [user, token] = useAuth();
   const navigate = useNavigate();
-  const profileUrl = useHref(`/profile/${post.user}`)
- const [upVoteCounter, setUpVoteCounter] = useState(post.likes.length)
+  const profileUrl = useHref(`/profile/${post.user}`);
+  const [upVoteCounter, setUpVoteCounter] = useState(post.likes.length);
+  const [isOpen, setIsOpen] = useState(false);
+
 
   const handleProfileClick = () => {
     navigate(profileUrl);
@@ -31,33 +32,37 @@ const Post = ({ post }) => {
 
   const handleUpVote = async () => {
     try {
-      await axios.put(`/api/posts/like/${post._id}`, {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-      })
-      setUpVoteCounter(upVoteCounter+1)
+      await axios.put(
+        `/api/posts/like/${post._id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setUpVoteCounter(upVoteCounter + 1);
     } catch (error) {
-      console.log(error.msg)
-      
+      console.log(error.msg);
     }
-  }
+  };
 
-  const handleDownVote = async () =>{
+  const handleDownVote = async () => {
     try {
-      await axios.put(`/api/posts/unlike/${post._id}`, {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-      })
-      setUpVoteCounter(upVoteCounter-1)
+      await axios.put(
+        `/api/posts/unlike/${post._id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setUpVoteCounter(upVoteCounter - 1);
     } catch (error) {
-      console.log(error)
-      
+      console.log(error);
     }
-  }
-
-
+  };
 
   return (
     <>
@@ -91,16 +96,20 @@ const Post = ({ post }) => {
             <IconButton onClick={handleUpVote}>
               <ArrowCircleUpIcon sx={{ color: "white" }} />
             </IconButton>
-            <Typography sx={{ display: 'inline-flex', alignItems: 'center' }}>{upVoteCounter}</Typography>
+            <Typography sx={{ display: "inline-flex", alignItems: "center" }}>
+              {upVoteCounter}
+            </Typography>
             <IconButton onClick={handleDownVote}>
               <ArrowCircleDownIcon sx={{ color: "white" }} />
             </IconButton>
           </Grid>
           <Grid item>
-            <IconButton>
+            <IconButton onClick={() => setIsOpen(true)}>
               <MessageIcon sx={{ color: "white" }} />
             </IconButton>
-            <Typography sx={{ display: 'inline-flex', alignItems: 'center' }}>{post.comments.length}</Typography>
+            <Typography sx={{ display: "inline-flex", alignItems: "center" }}>
+              {post.comments.length}
+            </Typography>
           </Grid>
           <Grid item>
             <Typography>{moment(post.date).format("MM/DD/YYYY")}</Typography>
@@ -112,6 +121,7 @@ const Post = ({ post }) => {
           </Grid>
         </Grid>
       </Paper>
+      <PostModal post={post} isOpen={isOpen} setIsOpen={setIsOpen}/>
     </>
   );
 };
