@@ -25,4 +25,4 @@ Register Page
 <img src="client/public/images/register.png">
 
 Profile Page
-<img src="client/public/images/profile.png>
+<img src="client/public/images/profile.png">
