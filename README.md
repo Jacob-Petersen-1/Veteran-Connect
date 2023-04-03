@@ -1,6 +1,19 @@
-This application was created as a learning project of love. This project is my sort of playground in learning new ways to factor code and test different packages. Still a work in progress but open to suggestions to how to improve!
+#[Terminal-Talk](https://aqueous-harbor-36822.herokuapp.com/)
 
-Technologies: MERN stack, MongoDB,ExpressJs,React,Node.js,Axios,Material-UI library
+## Technologies Used
+
+- MERN Stack
+- Github OAuth API
+- React Material UI
+- Hosted With Heroku
+
+## Features
+
+- User Authentication
+- Profile Creation
+- Add Posts to Share With Community
+- Comment and Upvote Posts
+
 
 Landing
 <img src="client/public/images/signon.png">
@@ -10,3 +23,6 @@ Post Feed
 
 Register Page
 <img src="client/public/images/register.png">
+
+Profile Page
+<img src="client/public/images/profile.png>
