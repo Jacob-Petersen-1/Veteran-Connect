@@ -131,7 +131,7 @@ const AppBarCustom = () => {
             <MenuItem onClick={handleMenuClose}>Join The Discussion</MenuItem>
             </Link>
           )}
-           <Link to="https://jacob-petersen-1.github.io" style={{ textDecoration: "none" }} targe="_blank">
+           <Link to="https://jacob-petersen-1.github.io" style={{ textDecoration: "none" }} target="_blank">
           <MenuItem >About The Developer</MenuItem>
            </Link>
           {user ? <MenuItem onClick={logoutUser}>Log Out</MenuItem> : null}
