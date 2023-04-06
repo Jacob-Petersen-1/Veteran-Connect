@@ -93,9 +93,9 @@ const AppBarCustom = () => {
                     Sign Up
                   </Button>
                 </Link>
-                <Link to="/register" style={{ textDecoration: "none" }}>
+                <Link to="https://jacob-petersen-1.github.io" style={{ textDecoration: "none" }} target="_blank">
                   <Button variant="text" sx={{ color: "white" }}>
-                    Contact Developer
+                    About The Developer
                   </Button>
                 </Link>
               </>
@@ -126,9 +126,13 @@ const AppBarCustom = () => {
           {user ? (
             <MenuItem onClick={handleProfileClick} >Profile</MenuItem>
           ) : (
+            <Link to="/register" style={{ textDecoration: "none" }}>
             <MenuItem onClick={handleMenuClose}>Join The Discussion</MenuItem>
+            </Link>
           )}
-          <MenuItem onClick={handleMenuClose}>Contact The Developer</MenuItem>
+           <Link to="https://jacob-petersen-1.github.io" style={{ textDecoration: "none" }} targe="_blank">
+          <MenuItem >About The Developer</MenuItem>
+           </Link>
           {user ? <MenuItem onClick={logoutUser}>Log Out</MenuItem> : null}
         </Menu>
       </Toolbar>

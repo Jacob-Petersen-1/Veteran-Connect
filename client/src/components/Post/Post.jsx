@@ -43,7 +43,7 @@ const Post = ({ post }) => {
       );
       setUpVoteCounter(upVoteCounter + 1);
     } catch (error) {
-      console.log(error.msg);
+      console.log(error.response.data.msg);
     }
   };
 
