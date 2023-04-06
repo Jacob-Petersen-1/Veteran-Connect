@@ -123,10 +123,11 @@ const AppBarCustom = () => {
           open={Boolean(anchor)}
           onClose={handleMenuClose}
         >
+            {user ? <Link to="/home" style={{ textDecoration: "none" }}><MenuItem>Home</MenuItem></Link> : null}
           {user ? (
             <MenuItem onClick={handleProfileClick} >Profile</MenuItem>
           ) : (
-            <Link to="/register" style={{ textDecoration: "none" }}>
+            <Link to="/register" style={{ textDecoration: "none" }} >
             <MenuItem onClick={handleMenuClose}>Join The Discussion</MenuItem>
             </Link>
           )}
