@@ -12,10 +12,8 @@ import { IconButton } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import MessageIcon from "@mui/icons-material/Message";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
-import ShareIcon from "@mui/icons-material/Share";
 import ForumIcon from "@mui/icons-material/Forum";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PostModal from "../PostCommentModal/PostCommentModal";
@@ -85,10 +83,12 @@ const Post = ({ post }) => {
                 {post.name}
               </Typography>
             </IconButton>
-            <Grid item sx={{flexGrow:1,textAlign:"end"}}>
-              <IconButton >
-                <MoreVertIcon sx={{ color: "white" }} />
-              </IconButton>
+            <Grid item sx={{ flexGrow: 1, textAlign: "end" }}>
+              {user.id === post.user && (
+                <IconButton>
+                  <MoreVertIcon sx={{ color: "white" }} />
+                </IconButton>
+              )}
             </Grid>
           </Grid>
 
@@ -102,8 +102,6 @@ const Post = ({ post }) => {
           direction="row"
           justifyContent="space-between"
           alignItems="center"
-          
-
         >
           <Grid item>
             <IconButton onClick={handleUpVote}>
@@ -122,8 +120,8 @@ const Post = ({ post }) => {
               {post.comments.length}
             </Typography>
           </Grid>
-          
-          <Grid sx={{pr:1}} item>
+
+          <Grid sx={{ pr: 1 }} item>
             <Typography>{moment(post.date).format("MM/DD/YYYY")}</Typography>
           </Grid>
         </Grid>
