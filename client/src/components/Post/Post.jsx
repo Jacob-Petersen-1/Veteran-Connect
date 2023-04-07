@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 
 //utils
 import * as moment from "moment";
@@ -17,13 +17,40 @@ import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ForumIcon from "@mui/icons-material/Forum";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PostModal from "../PostCommentModal/PostCommentModal";
+import DeleteIcon from "@mui/icons-material/Delete";
+import PostDeleteAlert from "../PostDeleteAlert/PostDeleteAlert";
 
-const Post = ({ post }) => {
+const Post = ({ post, fetchPosts }) => {
   const [user, token] = useAuth();
   const navigate = useNavigate();
   const profileUrl = useHref(`/profile/${post.user}`);
   const [upVoteCounter, setUpVoteCounter] = useState(post.likes.length);
   const [isOpen, setIsOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [userDelete, setUserDelete] = useState(false);
+
+
+  const handleDeleteAlert = () => {
+    setShowAlert(!showAlert);
+  }
+
+  const handleDeleteClick = async () => {
+    setUserDelete(false)
+    try {
+      await axios.delete(`/api/posts/${post._id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      fetchPosts();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleIconClick = () => {
+    setUserDelete(!userDelete);
+  };
 
   const handleProfileClick = () => {
     navigate(profileUrl);
@@ -63,6 +90,7 @@ const Post = ({ post }) => {
     }
   };
 
+
   return (
     <>
       <Paper
@@ -85,9 +113,23 @@ const Post = ({ post }) => {
             </IconButton>
             <Grid item sx={{ flexGrow: 1, textAlign: "end" }}>
               {user.id === post.user && (
-                <IconButton>
-                  <MoreVertIcon sx={{ color: "white" }} />
-                </IconButton>
+                <>
+                  {userDelete ? (
+                    <>
+                      <IconButton onClick={handleDeleteAlert}>
+                        <DeleteIcon sx={{ color: "red" }} />
+                      </IconButton>
+                      <PostDeleteAlert open={showAlert} setUserDelete={setUserDelete} setOpen={setShowAlert} handleDeleteClick={handleDeleteClick} />
+
+                    </>
+                  ) : (
+                    <>
+                      <IconButton onClick={handleIconClick}>
+                        <MoreVertIcon sx={{ color: "white" }} />
+                      </IconButton>
+                    </>
+                  )}
+                </>
               )}
             </Grid>
           </Grid>
