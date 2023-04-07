@@ -13,7 +13,7 @@ const PostFeed = () => {
   const [user,token] = useAuth();
   const [posts, setPosts] = useState();
 
-  // TODO UNCOMMENT USE EFFECT
+ 
   const fetchPosts = async () => {
     try {
       let response = await axios.get("/api/posts/", {
@@ -37,7 +37,7 @@ const PostFeed = () => {
         sx={{
           flexGrow: 1,
           overflow: "hidden",
-          px: 3,
+          px: 1,
           marginTop: "6rem",
           mx: "auto",
         }}

@@ -18,7 +18,7 @@ const Typewriter = ({ text, variant }) => {
   return (
     <Typography
       sx={{
-        fontSize: { xs: "3rem", sm: "4rem", md: "5rem" },
+        fontSize: { xs: "2rem", sm: "3rem", md: "5rem" },
         lineHeight: { xs: 1.2, sm: 1.5, md: 1.8 },
       }}
       variant={variant}
