@@ -75,7 +75,7 @@ const CreatePost = ({ fetchPosts }) => {
 
           <AppBar
             position="fixed"
-            color="transparent"
+            color="grey"
             sx={{
               top: "auto",
               bottom: 0,

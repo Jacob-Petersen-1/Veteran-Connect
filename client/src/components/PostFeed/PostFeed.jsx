@@ -38,7 +38,7 @@ const PostFeed = () => {
           flexGrow: 1,
           overflow: "hidden",
           px: 1,
-          marginTop: "6rem",
+          marginTop: "4rem",
           mx: "auto",
         }}
       >
