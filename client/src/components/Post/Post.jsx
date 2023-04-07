@@ -16,6 +16,8 @@ import MessageIcon from "@mui/icons-material/Message";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ShareIcon from "@mui/icons-material/Share";
+import ForumIcon from "@mui/icons-material/Forum";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PostModal from "../PostCommentModal/PostCommentModal";
 
 const Post = ({ post }) => {
@@ -24,7 +26,6 @@ const Post = ({ post }) => {
   const profileUrl = useHref(`/profile/${post.user}`);
   const [upVoteCounter, setUpVoteCounter] = useState(post.likes.length);
   const [isOpen, setIsOpen] = useState(false);
-
 
   const handleProfileClick = () => {
     navigate(profileUrl);
@@ -70,27 +71,39 @@ const Post = ({ post }) => {
         sx={{
           my: 1,
           mx: "auto",
-          p: 2,
+          p: 1,
         }}
       >
-        <Grid container wrap="nowrap" spacing={2}>
-          <Grid item>
-            <IconButton onClick={handleProfileClick}>
+        <Grid container direction="column" spacing={2}>
+          <Grid
+            item
+            sx={{ display: "flex", alignItems: "center", flexDirection: "row" }}
+          >
+            <IconButton sx={{ color: "white" }} onClick={handleProfileClick}>
               <Avatar alt="Profile Photo" src={post.avatar} />
+              <Typography variant="h5" sx={{ fontSize: "1rem", ml: "1rem" }}>
+                {post.name}
+              </Typography>
             </IconButton>
-          </Grid>
-          <Grid item sx={{ p: 2 }}>
-            <Typography variant="h5">{post.name}</Typography>
-            <Grid item>
-              <Typography>{post.text}</Typography>
+            <Grid item sx={{flexGrow:1,textAlign:"end"}}>
+              <IconButton >
+                <MoreVertIcon sx={{ color: "white" }} />
+              </IconButton>
             </Grid>
           </Grid>
+
+          <Grid padding={3} marginLeft={3} item>
+            <Typography sx={{ fontSize: ".8rem" }}>{post.text}</Typography>
+          </Grid>
         </Grid>
+
         <Grid
           container
           direction="row"
           justifyContent="space-between"
-          alignItems="flex-end"
+          alignItems="center"
+          
+
         >
           <Grid item>
             <IconButton onClick={handleUpVote}>
@@ -102,26 +115,20 @@ const Post = ({ post }) => {
             <IconButton onClick={handleDownVote}>
               <ArrowCircleDownIcon sx={{ color: "white" }} />
             </IconButton>
-          </Grid>
-          <Grid item>
             <IconButton onClick={() => setIsOpen(true)}>
-              <MessageIcon sx={{ color: "white" }} />
+              <ForumIcon sx={{ color: "white" }} />
             </IconButton>
             <Typography sx={{ display: "inline-flex", alignItems: "center" }}>
               {post.comments.length}
             </Typography>
           </Grid>
-          <Grid item>
+          
+          <Grid sx={{pr:1}} item>
             <Typography>{moment(post.date).format("MM/DD/YYYY")}</Typography>
-          </Grid>
-          <Grid item>
-            <IconButton>
-              <ShareIcon sx={{ color: "white" }} />
-            </IconButton>
           </Grid>
         </Grid>
       </Paper>
-      <PostModal post={post} isOpen={isOpen} setIsOpen={setIsOpen}/>
+      <PostModal post={post} isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };
