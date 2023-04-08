@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import * as moment from "moment";
 
 //MUI Imports
 import {
@@ -89,7 +90,7 @@ const Profile = () => {
           <Grid item xs={12}>
             <Paper
               sx={{
-                padding: 10,
+                padding: 6,
                 textAlign: "center",
                 margin: "auto",
                 display: "flex",
@@ -197,42 +198,54 @@ const Profile = () => {
             textAlign: "left",
             margin: "auto",
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            flexDirection: "row",
+            alignItems: "flex-start",
             justifyContent: "center",
-            marginTop:1
+            marginTop: 1,
           }}
         >
-          <Typography variant="h6">Experience</Typography>
           <Typography variant="body1">
             <strong>Companies: </strong>
+            <br></br>
             {profile.experience && profile.experience.length > 0 ? (
               profile.experience.map((experience) => (
-                <Chip
-                  label={experience.company + " " + experience.title}
-                  key={experience}
-                />
+                <Typography variant="body2" key={experience}>
+                  Company Name: {experience.company}:
+                  <br></br>
+                  Title: {experience.title}
+                  <br></br>
+                  From:  {moment(experience.from).format("MM/DD/YYYY")} - {experience.current === false ? ('Now') : (moment(experience.to).format("MM/DD/YYYY"))}
+                  <br></br>
+                  Description: {experience.description}
+                  <br></br>
+                  <hr></hr>
+                </Typography>
               ))
             ) : (
               <span>No experience listed</span>
             )}
           </Typography>
-          <Typography variant="h6">Education</Typography>
+
           <Typography variant="body1">
             <strong>Education: </strong>
+            <br></br>
             {profile.education && profile.education.length > 0 ? (
               profile.education.map((education) => (
-                <Chip
-                  label={education.school + " " + education.degree}
-                  key={education}
-                />
+                <Typography variant="body2" key={education}>
+                  School: {education.school}
+                <br></br>    
+                  Degree: {education.degree}
+                  <br></br>
+                  From:  {moment(education.from).format("MM/DD/YYYY")} - {education.current === false ? ('Now') : (moment(education.to).format("MM/DD/YYYY"))}
+                  <hr></hr>
+                </Typography>
               ))
             ) : (
               <span>No education listed</span>
             )}
           </Typography>
         </Paper>
-        <ProfileGithub githubUser={profile.githubusername}/>
+        <ProfileGithub githubUser={profile.githubusername} />
       </Container>
     </>
   );

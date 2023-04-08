@@ -24,7 +24,6 @@ import SendIcon from "@mui/icons-material/Send";
 import Fab from "@mui/material/Fab";
 import CreatePostMobile from "../CreatePostMobile/CreatePostMobile";
 
-
 const CreatePost = ({ fetchPosts }) => {
   const [user, token] = useAuth();
   const isMobile = useMediaQuery("(max-width:600px)");
@@ -43,7 +42,7 @@ const CreatePost = ({ fetchPosts }) => {
           console.log("Post Created");
           fetchPosts();
           reset();
-          setOpen(false)
+          setOpen(false);
           setIsServerError(false);
         });
     } catch (error) {
@@ -55,7 +54,6 @@ const CreatePost = ({ fetchPosts }) => {
     defaultValues,
     sendPost
   );
-
 
   const handleClose = () => {
     setOpen(false);
@@ -71,7 +69,11 @@ const CreatePost = ({ fetchPosts }) => {
     <>
       {isMobile ? (
         <>
-          <CreatePostMobile open={open}  handleClose={handleClose} sendPost={sendPost}/>
+          <CreatePostMobile
+            open={open}
+            handleClose={handleClose}
+            sendPost={sendPost}
+          />
 
           <AppBar
             position="fixed"
@@ -105,7 +107,7 @@ const CreatePost = ({ fetchPosts }) => {
             sx={{
               my: 1,
               mx: "auto",
-              p: 2,
+              p: 3,
               display: "flex",
               flexDirection: "column",
             }}
@@ -120,6 +122,7 @@ const CreatePost = ({ fetchPosts }) => {
             <TextField
               sx={{
                 width: "100%",
+                paddingBottom: "10px",
               }}
               id="outlined-multiline-static"
               multiline
@@ -132,7 +135,12 @@ const CreatePost = ({ fetchPosts }) => {
               onChange={handleInputChange}
             />
 
-            <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+            <Button
+              sx={{ maxWidth: "100px", alignSelf: "flex-end"}}
+              type="submit"
+              variant="contained"
+              endIcon={<SendIcon />}
+            >
               Send
             </Button>
           </Paper>
