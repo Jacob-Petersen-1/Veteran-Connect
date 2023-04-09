@@ -200,7 +200,7 @@ const Profile = () => {
             display: "flex",
             flexDirection: "row",
             alignItems: "flex-start",
-            justifyContent: "center",
+            justifyContent: "space-between",
             marginTop: 1,
           }}
         >

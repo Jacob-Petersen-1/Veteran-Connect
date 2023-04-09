@@ -6,14 +6,16 @@ import axios from "axios";
 
 //Components
 import Post from "../Post/Post";
-import { Box} from "@mui/material";
+import { Box } from "@mui/material";
 import CreatePost from "../CreatePost/CreatePost";
+import Loader from "react-loading";
 
 const PostFeed = () => {
-  const [user,token] = useAuth();
+  const [user, token] = useAuth();
   const [posts, setPosts] = useState();
+  const [loading, setLoading] = useState(true);
 
- 
+
   const fetchPosts = async () => {
     try {
       let response = await axios.get("/api/posts/", {
@@ -21,14 +23,35 @@ const PostFeed = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      setLoading(false)
       setPosts(response.data);
     } catch (error) {
       console.log(error);
     }
   };
+
+
   useEffect(() => {
-    fetchPosts();
+    setTimeout(() => {
+      fetchPosts();
+    }, 500);
   }, [token]);
+
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <Loader type="bars" color="#ffffff" />
+      </Box>
+    );
+  }
+
 
   return (
     <>
@@ -42,7 +65,7 @@ const PostFeed = () => {
           mx: "auto",
         }}
       >
-       <CreatePost fetchPosts={fetchPosts}/> 
+        <CreatePost fetchPosts={fetchPosts} />
         {posts && posts.map((post) => <Post key={post._id} post={post} fetchPosts={fetchPosts} />)}
       </Box>
     </>
