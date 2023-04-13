@@ -81,9 +81,7 @@ const LoginComponent = () => {
       </Button>
       <Grid container>
         <Grid item xs>
-          <Link to="/" variant="body2">
-            Forgot password?
-          </Link>
+
         </Grid>
         <Grid item>
           <Link to="/register" variant="body2">
