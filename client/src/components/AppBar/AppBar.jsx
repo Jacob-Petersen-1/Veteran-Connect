@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 
 //Util
 import AuthContext from "../../Auth/AuthContext";
-import { useNavigate,useHref,Link } from "react-router-dom";
+import { useNavigate, useHref, Link } from "react-router-dom";
 
 //MUI Imports
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -14,27 +14,21 @@ import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import MenuIcon from '@mui/icons-material/Menu';
-import TerminalIcon from '@mui/icons-material/Terminal';
-
-
- 
-
-
+import MenuIcon from "@mui/icons-material/Menu";
+import TerminalIcon from "@mui/icons-material/Terminal";
 
 const AppBarCustom = () => {
   const navigate = useNavigate();
   const { logoutUser, user } = useContext(AuthContext);
   const [anchor, setAnchor] = useState(null);
   const isMobile = useMediaQuery("(min-width:600px)");
-  const profileUrl = user ? ProfileLink(user.id): ''
+  const profileUrl = user ? ProfileLink(user.id) : "";
 
-// If it works It works I suppose
-  function ProfileLink(userId){
-    const profileUrl = useHref(`/profile/${userId}`) 
+  // If it works It works I suppose
+  function ProfileLink(userId) {
+    const profileUrl = useHref(`/profile/${userId}`);
     return profileUrl;
   }
-   
 
   const handleMenuOpen = (event) => {
     setAnchor(event.currentTarget);
@@ -45,19 +39,11 @@ const AppBarCustom = () => {
   };
 
   const handleProfileClick = () => {
-    navigate(profileUrl)
-
-
-  }
-
-
-  
+    navigate(profileUrl);
+  };
 
   return (
-    <AppBar
-      sx={{ background: "black", boxShadow: "none" }}
-      position="fixed"
-    >
+    <AppBar sx={{ background: "black", boxShadow: "none" }} position="fixed">
       <Toolbar>
         <Link
           to={user ? "/home" : "/"}
@@ -68,7 +54,7 @@ const AppBarCustom = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            startIcon={<TerminalIcon/>}
+            startIcon={<TerminalIcon />}
             sx={{ mr: 1 }}
           >
             Terminal Talk
@@ -93,7 +79,11 @@ const AppBarCustom = () => {
                     Sign Up
                   </Button>
                 </Link>
-                <Link to="https://jacob-petersen-1.github.io" style={{ textDecoration: "none" }} target="_blank">
+                <Link
+                  to="https://jacobpetersendev.netlify.app"
+                  style={{ textDecoration: "none" }}
+                  target="_blank"
+                >
                   <Button variant="text" sx={{ color: "white" }}>
                     About The Developer
                   </Button>
@@ -104,7 +94,7 @@ const AppBarCustom = () => {
         ) : (
           <>
             <IconButton edge="start" aria-label="menu" onClick={handleMenuOpen}>
-           <MenuIcon sx={{color:"white"}}/>
+              <MenuIcon sx={{ color: "white" }} />
             </IconButton>
           </>
         )}
@@ -123,17 +113,25 @@ const AppBarCustom = () => {
           open={Boolean(anchor)}
           onClose={handleMenuClose}
         >
-            {user ? <Link to="/home" style={{ textDecoration: "none" }}><MenuItem>Home</MenuItem></Link> : null}
           {user ? (
-            <MenuItem onClick={handleProfileClick} >Profile</MenuItem>
+            <Link to="/home" style={{ textDecoration: "none" }}>
+              <MenuItem>Home</MenuItem>
+            </Link>
+          ) : null}
+          {user ? (
+            <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
           ) : (
-            <Link to="/register" style={{ textDecoration: "none" }} >
-            <MenuItem onClick={handleMenuClose}>Join The Discussion</MenuItem>
+            <Link to="/register" style={{ textDecoration: "none" }}>
+              <MenuItem onClick={handleMenuClose}>Join The Discussion</MenuItem>
             </Link>
           )}
-           <Link to="https://jacob-petersen-1.github.io" style={{ textDecoration: "none" }} target="_blank">
-          <MenuItem >About The Developer</MenuItem>
-           </Link>
+          <Link
+            to="https://jacob-petersen-1.github.io"
+            style={{ textDecoration: "none" }}
+            target="_blank"
+          >
+            <MenuItem>About The Developer</MenuItem>
+          </Link>
           {user ? <MenuItem onClick={logoutUser}>Log Out</MenuItem> : null}
         </Menu>
       </Toolbar>

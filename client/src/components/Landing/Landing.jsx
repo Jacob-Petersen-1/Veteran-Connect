@@ -8,7 +8,6 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Fade from "@mui/material/Fade";
 
-
 import Typewriter from "../TypeWriter/TypeWriter";
 
 const Landing = () => {
@@ -34,18 +33,16 @@ const Landing = () => {
             <Typewriter text="Terminal Talk" variant="h2" />
           </Grid>
           <Grid item>
-            
             <Fade easing="ease-in" timeout={2000} in={true}>
               <CardMedia
                 component="img"
                 height={{ xs: "20vw", sm: "30vw", md: "30vw", lg: "30vw" }}
                 image="./images/service-logos.png"
                 alt="service logos"
-                sx={{ maxWidth: "90%",mx:"auto" }}
+                sx={{ maxWidth: "90%", mx: "auto" }}
               />
             </Fade>
             <Card sx={{ backgroundColor: "#111111", padding: "1rem" }}>
-
               <Typography
                 textAlign="center"
                 variant="subtitle1"
