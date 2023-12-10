@@ -14,7 +14,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Alert, AlertTitle } from "@mui/material";
-import Typewriter from "../TypeWriter/TypeWriter";
+import TypeWriter from "../TypeWriter/TypeWriter";
 
 const RegisterComponent = () => {
   const [passwordError, setPasswordError] = useState(false);
@@ -34,8 +34,6 @@ const RegisterComponent = () => {
       setPasswordError(false);
     }
   };
-
-
 
   useEffect(() => {
     if (isServerError) {
@@ -61,8 +59,12 @@ const RegisterComponent = () => {
           onSubmit={handleSubmit}
           sx={{ mt: 1 }}
         >
-          <Typewriter text={"Register to join the Community"} variant={"h5"}/>
-          <TextField
+          <Typewriter
+            size="small"
+            text={"Register to join the Community"}
+            variant={"h5"}
+          />
+          <TextFieldInput
             margin="normal"
             required
             fullWidth
@@ -72,7 +74,7 @@ const RegisterComponent = () => {
             value={formData.email}
             onChange={handleInputChange}
           />
-          <TextField
+          <TextFieldInput
             margin="normal"
             required
             fullWidth
@@ -83,7 +85,7 @@ const RegisterComponent = () => {
             value={formData.name}
             onChange={handleInputChange}
           />
-          <TextField
+          <TextFieldInput
             margin="normal"
             required
             fullWidth
@@ -94,7 +96,7 @@ const RegisterComponent = () => {
             value={formData.password}
             onChange={handleInputChange}
           />
-          <TextField
+          <TextFieldInput
             margin="normal"
             required
             fullWidth
@@ -133,5 +135,38 @@ const RegisterComponent = () => {
     </>
   );
 };
+
+const TextFieldInput = ({ label, name, value, onChange, type = "text" }) => (
+  <TextField
+    margin="normal"
+    required
+    fullWidth
+    id={name}
+    label={label}
+    name={name}
+    value={value}
+    onChange={onChange}
+    type={type}
+    sx={{
+      "& .MuiOutlinedInput-input": {
+        color: "white",
+        borderColor: "white",
+        border: ".5px solid white",
+        borderRadius: "5px",
+      },
+      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        borderColor: "white",
+      },
+      "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+        borderColor: "white",
+      },
+
+      "& .MuiInputLabel-outlined": {
+        color: "white",
+        marginTop: "-.3rem",
+      },
+    }}
+  />
+);
 
 export default RegisterComponent;

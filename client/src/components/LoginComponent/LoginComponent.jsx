@@ -110,8 +110,26 @@ const TextFieldInput = ({ label, name, value, onChange, type = "text" }) => (
     name={name}
     value={value}
     onChange={onChange}
-    variant="outlined"
     type={type}
+    sx={{
+      "& .MuiOutlinedInput-input": {
+        color: "white",
+        borderColor: "white",
+        border: ".5px solid white",
+        borderRadius: "5px",
+      },
+      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        borderColor: "white",
+      },
+      "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+        borderColor: "white",
+      },
+
+      "& .MuiInputLabel-outlined": {
+        color: "white",
+        marginTop: "-.3rem",
+      },
+    }}
   />
 );
 

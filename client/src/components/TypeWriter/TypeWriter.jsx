@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Typography } from "@mui/material";
 
-const Typewriter = ({ text, variant }) => {
+const TypeWriter = ({ text, variant, size }) => {
   const [currentText, setCurrentText] = useState("");
   const [index, setIndex] = useState(0);
 
@@ -18,8 +18,13 @@ const Typewriter = ({ text, variant }) => {
   return (
     <Typography
       sx={{
-        fontSize: { xs: "2rem", sm: "3rem", md: "5rem" },
+        fontSize: {
+          xs: size === "small" ? "1rem" : "2rem",
+          sm: "3rem",
+          md: "5rem",
+        },
         lineHeight: { xs: 1.2, sm: 1.5, md: 1.8 },
+        marginBottom: "1rem",
       }}
       variant={variant}
     >
@@ -29,4 +34,4 @@ const Typewriter = ({ text, variant }) => {
   );
 };
 
-export default Typewriter;
+export default TypeWriter;
