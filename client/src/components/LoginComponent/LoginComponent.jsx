@@ -19,7 +19,7 @@ import { Stack } from "@mui/material";
 
 const LoginComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { loginUser, isServerError } = useContext(AuthContext);
+  const { loginUser, guestUser, isServerError } = useContext(AuthContext);
   const defaultValues = { email: "", password: "" };
   const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
     defaultValues,
@@ -45,52 +45,74 @@ const LoginComponent = () => {
         <LockPersonSharpIcon />
         <Typography>Sign In</Typography>
       </Stack>
-      <TextField
-        margin="normal"
-        required
-        fullWidth
-        id="email"
+
+      <TextFieldInput
         label="Email Address"
         name="email"
         value={formData.email}
         onChange={handleInputChange}
       />
-      <TextField
-        margin="normal"
-        required
-        fullWidth
-        name="password"
+
+      <TextFieldInput
         label="Password"
-        type={showPassword ? "text" : "password"}
-        id="password"
+        name="password"
         value={formData.password}
         onChange={handleInputChange}
+        type={showPassword ? "text" : "password"}
       />
+
       <FormControlLabel
         control={
           <Checkbox
             onClick={() => setShowPassword(!showPassword)}
-            value="remember"
             color="primary"
           />
         }
         label="Show Password"
       />
-      <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+
+      <Button
+        variant="contained"
+        fullWidth
+        sx={{ mt: 3, mb: 2 }}
+        onClick={handleSubmit}
+      >
         Sign In
       </Button>
-      <Grid container>
-        <Grid item xs>
 
-        </Grid>
+      <Button
+        variant="contained"
+        onClick={guestUser}
+        fullWidth
+        sx={{ mt: 1, mb: 2 }}
+      >
+        Continue As Guest
+      </Button>
+
+      <Grid container>
         <Grid item>
           <Link to="/register" variant="body2">
-            {"Don't have an account? Sign Up"}
+            Don't have an account? Sign Up
           </Link>
         </Grid>
       </Grid>
     </Box>
   );
 };
+
+const TextFieldInput = ({ label, name, value, onChange, type = "text" }) => (
+  <TextField
+    margin="normal"
+    required
+    fullWidth
+    id={name}
+    label={label}
+    name={name}
+    value={value}
+    onChange={onChange}
+    variant="outlined"
+    type={type}
+  />
+);
 
 export default LoginComponent;
