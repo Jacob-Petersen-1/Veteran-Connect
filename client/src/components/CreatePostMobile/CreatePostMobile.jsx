@@ -4,22 +4,16 @@ import React from "react";
 
 import useCustomForm from "../../hooks/useCustomForm";
 
-
 // Material UI
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
-const CreatePostMobile = ({open,handleClose,sendPost}) => {
-
- 
-    const defaultValues = { text: "" };
-    const [formData, handleInputChange, handleSubmit] = useCustomForm(
-        defaultValues,
-        () => sendPost(formData)
-      );
-
-
-
+const CreatePostMobile = ({ open, handleClose, sendPost }) => {
+  const defaultValues = { text: "" };
+  const [formData, handleInputChange, handleSubmit] = useCustomForm(
+    defaultValues,
+    () => sendPost(formData)
+  );
 
   return (
     <>
@@ -41,15 +35,14 @@ const CreatePostMobile = ({open,handleClose,sendPost}) => {
             p: 4,
             maxWidth: "95%",
             width: 400,
-            
           }}
         >
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h5" mb={2}>
             Create Post
           </Typography>
-          <form onSubmit={handleSubmit}>
+          <Box onSubmit={handleSubmit}>
             <TextField
-              label="Say Something"
+              label="Inspire the world..."
               variant="outlined"
               name="text"
               fullWidth
@@ -58,11 +51,12 @@ const CreatePostMobile = ({open,handleClose,sendPost}) => {
               onChange={handleInputChange}
               sx={{ mb: 2 }}
               rows={3}
+              multiline
             />
-            <Button type="submit" variant="contained" endIcon={<SendIcon/>}>
+            <Button type="submit" variant="contained" endIcon={<SendIcon />}>
               Send
             </Button>
-          </form>
+          </Box>
         </Box>
       </Modal>
     </>

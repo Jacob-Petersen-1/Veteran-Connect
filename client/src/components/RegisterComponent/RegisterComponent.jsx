@@ -59,7 +59,7 @@ const RegisterComponent = () => {
           onSubmit={handleSubmit}
           sx={{ mt: 1 }}
         >
-          <Typewriter
+          <TypeWriter
             size="small"
             text={"Register to join the Community"}
             variant={"h5"}
@@ -136,6 +136,7 @@ const RegisterComponent = () => {
   );
 };
 
+// TODO: Make Reusable Component
 const TextFieldInput = ({ label, name, value, onChange, type = "text" }) => (
   <TextField
     margin="normal"
